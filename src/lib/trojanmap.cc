@@ -587,7 +587,8 @@ std::pair<double, double> TrojanMap::GetPlotLocation(double lat, double lon) {
  * @return {double}         : latitude
  */
 double TrojanMap::GetLat(std::string id) {
-    return 0;
+    Node n = data[id];
+    return n.lat;
 }
 
 
@@ -598,7 +599,8 @@ double TrojanMap::GetLat(std::string id) {
  * @return {double}         : longitude
  */
 double TrojanMap::GetLon(std::string id) { 
-    return 0;
+    Node n = data[id];
+    return n.lon;
 }
 
 /**
@@ -608,9 +610,10 @@ double TrojanMap::GetLon(std::string id) {
  * @return {std::string}    : name
  */
 std::string TrojanMap::GetName(std::string id) { 
-    return "";
+    Node n = data[id];
+    return n.name;
 }
-
+ 
 /**
  * GetNeighborIDs: Get the neighbor ids of a Node.
  * 
@@ -618,7 +621,8 @@ std::string TrojanMap::GetName(std::string id) {
  * @return {std::vector<std::string>}  : neighbor ids
  */
 std::vector<std::string> TrojanMap::GetNeighborIDs(std::string id) {
-    return {};
+    Node n = data[id];
+    return n.neighbors;
 }
 
 /**
@@ -672,6 +676,18 @@ double TrojanMap::CalculatePathLength(const std::vector<std::string> &path) {
  */
 std::vector<std::string> TrojanMap::Autocomplete(std::string name){
   std::vector<std::string> results;
+  for (auto i :data ){
+    Node n = i.second;
+    std::string nname = n.name;
+    std::string iname = name;
+    std::transform(nname.begin(), nname.end(), nname.begin(),[](unsigned char c){ return std::tolower(c); });
+    std::transform(iname.begin(), iname.end(), iname.begin(),[](unsigned char c){ return std::tolower(c); });
+   
+    if(nname.find(iname) != std::string::npos){
+      results.push_back(n.name);
+    }
+    
+  }
   return results;
 }
 
