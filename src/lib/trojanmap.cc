@@ -676,13 +676,12 @@ double TrojanMap::CalculatePathLength(const std::vector<std::string> &path) {
  */
 std::vector<std::string> TrojanMap::Autocomplete(std::string name){
   std::vector<std::string> results;
-  for (auto i :data ){
+  for (auto i :data){
     Node n = i.second;
     std::string nname = n.name;
     std::string iname = name;
     std::transform(nname.begin(), nname.end(), nname.begin(),[](unsigned char c){ return std::tolower(c); });
     std::transform(iname.begin(), iname.end(), iname.begin(),[](unsigned char c){ return std::tolower(c); });
-   
     if(nname.find(iname) != std::string::npos){
       results.push_back(n.name);
     }
@@ -698,8 +697,16 @@ std::vector<std::string> TrojanMap::Autocomplete(std::string name){
  * @return {std::pair<double,double>}  : (lat, lon)
  */
 std::pair<double, double> TrojanMap::GetPosition(std::string name) {
+  for(auto i:data){
+    Node n = i.second;
+    if(n.name == name){
+      std::pair<double, double> results(n.lat, n.lon);
+      return results;
+    }
+  }
   std::pair<double, double> results(-1, -1);
   return results;
+ 
 }
 
 /**
@@ -710,6 +717,12 @@ std::pair<double, double> TrojanMap::GetPosition(std::string name) {
  * @return {int}  : id
  */
 std::string TrojanMap::GetID(std::string name) {
+  for(i:data){
+    Node n = i.second;
+    if(n.name == name){
+      return n.id;
+    }
+  }
   std::string res = "";
   return res;
 }
