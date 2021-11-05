@@ -676,17 +676,34 @@ double TrojanMap::CalculatePathLength(const std::vector<std::string> &path) {
  */
 std::vector<std::string> TrojanMap::Autocomplete(std::string name){
   std::vector<std::string> results;
+  int inputsize = name.size();
   for (auto i :data){
     Node n = i.second;
     std::string nname = n.name;
     std::string iname = name;
     std::transform(nname.begin(), nname.end(), nname.begin(),[](unsigned char c){ return std::tolower(c); });
     std::transform(iname.begin(), iname.end(), iname.begin(),[](unsigned char c){ return std::tolower(c); });
-    if(nname.find(iname) != std::string::npos){
+    
+    int flag = 1;
+    if (nname < iname){
+      flag = 0;
+    } else{
+      for (int i = 0;i<inputsize;i++){
+        if (nname[i] == iname[i]){
+          continue;
+        } else{
+          flag = 0;
+          break;
+        }
+      }
+    }
+    
+    if (flag == 1){
       results.push_back(n.name);
     }
     
   }
+  
   return results;
 }
 
@@ -717,7 +734,7 @@ std::pair<double, double> TrojanMap::GetPosition(std::string name) {
  * @return {int}  : id
  */
 std::string TrojanMap::GetID(std::string name) {
-  for(i:data){
+  for(auto i:data){
     Node n = i.second;
     if(n.name == name){
       return n.id;
@@ -736,8 +753,15 @@ std::string TrojanMap::GetID(std::string name) {
  * @return {std::vector<std::string>}       : path
  */
 std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
-    std::string location1_name, std::string location2_name) {
+    std::string location1_name, std::string location2_name) {  
   std::vector<std::string> path;
+  std::unordered_set<int> visited;
+
+  std::string start = GetID(std::string location1_name);
+  std::string goal = GetID(std::string location2_name);
+  Node n= data[start];
+  Node n = data[goal];
+
   return path;
 }
 

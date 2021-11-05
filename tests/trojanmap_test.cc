@@ -10,6 +10,13 @@ TEST(TrojanMapTest, Autocomplete) {
   m.CreateGraphFromCSVFile();
   // Test the simple case
   auto names = m.Autocomplete("Ch");
+
+  //our test
+  // std::vector<std::string> namezz = m.Autocomplete("Ch");
+  // std::cout << namezz.size() << std::endl;
+  // std::cout << namezz[0]<< std::endl;
+  // std::cout << namezz[1]<< std::endl;
+
   std::unordered_set<std::string> gt1 = {"ChickfilA", "Chipotle Mexican Grill"}; // groundtruth for "Ch"
   int success = 0;
   for (auto& n: names) {
