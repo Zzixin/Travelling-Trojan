@@ -755,12 +755,13 @@ std::string TrojanMap::GetID(std::string name) {
 std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
     std::string location1_name, std::string location2_name) {  
   std::vector<std::string> path;
-  std::unordered_set<int> visited;
+  std::unordered_set<std::string> visited;
 
-  std::string start = GetID(std::string location1_name);
-  std::string goal = GetID(std::string location2_name);
+  std::string start = GetID(location1_name);
+  std::string goal = GetID(location2_name);
   Node n= data[start];
-  Node n = data[goal];
+  std::vector<std::string> start_nei = GetNeighborIDs(start);
+  // Node n = data[goal];
 
   return path;
 }
