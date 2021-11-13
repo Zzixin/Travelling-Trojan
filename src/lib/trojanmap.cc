@@ -996,7 +996,59 @@ std::vector<std::string> TrojanMap::DeliveringTrojan(std::vector<std::string> &l
  * @param {std::vector<double>} square: four vertexes of the square area
  * @return {bool}: whether there is a cycle or not
  */
+
+bool TrojanMap::DFS(std::string id,std::map<std::string,bool> &visited,std::string parent,std::vector<std::string> &path){
+    visited[id] = true;
+    Node n = data[id];
+    for (std::string nei : n.neighbors){
+        if (visited.count(nei)>0){
+          if (!visited[nei]){
+            if (DFS(nei,visited,id,path)){
+              path.push_back(id);
+              return true;
+            }
+          }
+          else {
+            if (nei != parent){
+              path.push_back(id);
+              return true;
+            }
+          }
+      }
+      
+    }
+    return false;
+  }
 bool TrojanMap::CycleDetection(std::vector<double> &square) {
+  std::vector<std::string> points; //nodes in this square
+  std::vector<std::string> path;
+  double left = square[0];
+  double right = square[1];
+  double upper = square[2];
+  double lower = square[3];
+  
+  for(auto &i:data){
+    if(i.second.lon>left && i.second.lon<right && i.second.lat>lower && i.second.lat<upper){
+      points.push_back(i.first);
+    }
+  }
+
+  std::map<std::string,bool> visited;
+  for (std::string i:points){
+    visited[i] = false;
+  }
+
+  for (std::string i:points){
+    if (visited[i]){
+      continue;
+    } else {
+      
+      if (DFS(i,visited,"",path)){
+        PlotPointsandEdges(path,square);
+        return true;
+      }
+    }
+  }
   return false;
 }
 
