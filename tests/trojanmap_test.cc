@@ -10,13 +10,6 @@ TEST(TrojanMapTest, Autocomplete) {
   m.CreateGraphFromCSVFile();
   // Test the simple case
   auto names = m.Autocomplete("Ch");
-
-  //our test
-  // std::vector<std::string> namezz = m.Autocomplete("Ch");
-  // std::cout << namezz.size() << std::endl;
-  // std::cout << namezz[0]<< std::endl;
-  // std::cout << namezz[1]<< std::endl;
-
   std::unordered_set<std::string> gt1 = {"ChickfilA", "Chipotle Mexican Grill"}; // groundtruth for "Ch"
   int success = 0;
   for (auto& n: names) {
@@ -170,8 +163,8 @@ TEST(TrojanMapTest, TSP2) {
   TrojanMap m;
   m.CreateGraphFromCSVFile();
   std::vector<std::string> input{"1862312636", "7424270441", "67666219", "4015405548", "4015203110", "6807439002"}; // Input location ids 
-  //auto result = m.TravellingTrojan(input);
-  auto result = m.TravellingTrojan_2opt(input);
+  auto result = m.TravellingTrojan(input);
+  // auto result = m.TravellingTrojan_2opt(input);
   std::cout << "My path length: " << result.first << "miles" << std::endl; // Print the result path lengths
   std::vector<std::string> gt{"1862312636", "4015405548", "4015203110", "6807439002", "7424270441", "67666219", "1862312636"}; // Expected order
   std::cout << "GT path length: " << m.CalculatePathLength(gt) << "miles" << std::endl; // Print the groundtruth path lengths

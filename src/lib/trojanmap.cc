@@ -804,15 +804,16 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
       }
     }
   }
-
-  std::string temp = end;
-  while (temp != start){ //o(n)
-    path.push_back(temp);
-    temp = pre[temp];
+  if (pre.find(end) != pre.end()){
+    std::string temp = end;
+    while (temp != start){ //o(n)
+      path.push_back(temp);
+      temp = pre[temp];
+      std::cout << temp<<std::endl;
+    }
+    path.push_back(start);
+    std::reverse(path.begin(), path.end()); //o(n)
   }
-  path.push_back(start);
-  std::reverse(path.begin(), path.end()); //o(n)
-
   return path;
 }
 
@@ -860,13 +861,15 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Bellman_Ford(
     if (flag == 0){break;} //if there is no change, achieve balance. break
   }
 
-  std::string temp = end;
-  while (temp != start){
-    path.push_back(temp);
-    temp = pre[temp];
-  }
-  path.push_back(start);
-  std::reverse(path.begin(), path.end());
+  if (pre.find(end) != pre.end()){
+      std::string temp = end;
+      while (temp != start){
+        path.push_back(temp);
+        temp = pre[temp];
+      }
+      path.push_back(start);
+      std::reverse(path.begin(), path.end());
+    }
 
   return path;
 }

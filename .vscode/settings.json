@@ -84,7 +84,8 @@
     "queue": "cpp",
     "cfenv": "cpp",
     "clocale": "cpp",
-    "typeindex": "cpp"
+    "typeindex": "cpp",
+    "*.inc": "cpp"
   },
   "lldb.displayFormat": "auto",
   "lldb.dereferencePointers": true,
