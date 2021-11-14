@@ -960,6 +960,17 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
  */
 std::vector<std::string> TrojanMap::ReadLocationsFromCSVFile(std::string locations_filename){
   std::vector<std::string> location_names_from_csv;
+  std::fstream fin;
+  fin.open(locations_filename, std::ios::in); // absolute path!
+  std::string line, word;
+
+  getline(fin, line);
+  while (getline(fin, line)) {
+    std::stringstream s(line);
+    getline(s, word, ',');
+    location_names_from_csv.push_back(word);
+  }
+  fin.close();
   return location_names_from_csv;
 }
 
@@ -972,6 +983,20 @@ std::vector<std::string> TrojanMap::ReadLocationsFromCSVFile(std::string locatio
  */
 std::vector<std::vector<std::string>> TrojanMap::ReadDependenciesFromCSVFile(std::string dependencies_filename){
   std::vector<std::vector<std::string>> dependencies_from_csv;
+  std::fstream fin;
+  fin.open(dependencies_filename, std::ios::in); // absolute path!
+  std::string line, word;
+
+  getline(fin, line);
+  while (getline(fin, line)) {
+    std::stringstream s(line);
+    std::vector<std::string> str_temp;
+    while (getline(s, word, ',')) {
+      str_temp.push_back(word);
+    }
+    dependencies_from_csv.push_back(str_temp);
+  }
+  fin.close();
   return dependencies_from_csv;
 }
 
@@ -985,8 +1010,44 @@ std::vector<std::vector<std::string>> TrojanMap::ReadDependenciesFromCSVFile(std
  */
 std::vector<std::string> TrojanMap::DeliveringTrojan(std::vector<std::string> &locations,
                                                      std::vector<std::vector<std::string>> &dependencies){
+  //reference - https://www.geeksforgeeks.org/topological-sorting/
   std::vector<std::string> result;
+  //std::stack<std::string> res_stack;
+  std::unordered_map<std::string, int> mark;
+  std::unordered_map<std::string, std::vector<std::string>> edge_map;
+
+  //initialize edge_map and mark
+  for (auto &i:locations){
+    edge_map[i] = {};
+    mark[i] = 0;
+  }
+  for (auto &j:dependencies){
+    for (int i=1; i<j.size(); i++){
+      edge_map[j[0]].push_back(j[i]);
+    }
+  }
+
+  // recursivly access all the nodes
+  for (auto &i:locations){
+    if (mark[i]==0){ //to ensure every node can be accessed
+      DFS_TS(result, mark, i, edge_map);
+    }
+  }
+
+  // result is like a stack, the deepest node comes first. so need to reverse
+  std::reverse(result.begin(), result.end());
   return result;                                                     
+}
+
+void TrojanMap::DFS_TS(std::vector<std::string> &result, std::unordered_map<std::string, int> &mark,
+        std::string root, std::unordered_map<std::string, std::vector<std::string>> &edge_map){
+  mark[root] = 1; //record the visited node
+  for (auto neighbor : edge_map[root]){ //directed graph
+    if (mark[neighbor] != 1){
+      DFS_TS(result, mark, neighbor, edge_map);
+    }
+  }
+  result.push_back(root); //push back the deepest nodes
 }
 
 /**
@@ -1039,10 +1100,7 @@ bool TrojanMap::CycleDetection(std::vector<double> &square) {
   }
 
   for (std::string i:points){
-    if (visited[i]){
-      continue;
-    } else {
-      
+    if (!visited[i]){
       if (DFS(i,visited,"",path)){
         PlotPointsandEdges(path,square);
         return true;
@@ -1060,6 +1118,38 @@ bool TrojanMap::CycleDetection(std::vector<double> &square) {
  * @return {std::vector<std::string>}: k closest points
  */
 std::vector<std::string> TrojanMap::FindKClosestPoints(std::string name, int k) {
+  //using heap!
   std::vector<std::string> res;
+  std::priority_queue<std::pair<double, std::string>> q; // first element is maximum 
+  std::string start_id = GetID(name);
+  double start_lat = data[start_id].lat;
+  double start_lon = data[start_id].lon;
+  int count =0;
+
+  // limit the size of priority_queue to k
+  for (auto &v:data){
+    Node n = v.second;
+    if (v.first != start_id && n.name.size()!=0){
+      //double d = sqrt(pow(n.lat-start_lat,2)+pow(n.lon-start_lon,2)); ？？？？wrong
+      double d = CalculateDistance(v.first, start_id);
+      if (count < k){
+        q.push(std::make_pair(d, v.first));
+        count ++;
+      }
+      else{
+        if (d < q.top().first){
+          q.pop();
+          q.push(std::make_pair(d, v.first));
+        }
+      }
+    }
+  }
+
+  while (!q.empty()){
+    res.push_back(q.top().second);
+    std::cout << q.top().second<<": "<<q.top().first<<std::endl;
+    q.pop();
+  }
+  std::reverse(res.begin(), res.end());
   return res;
 }
