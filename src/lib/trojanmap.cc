@@ -174,7 +174,8 @@ void TrojanMap::PrintMenu() {
     std::cout << "Calculating ..." << std::endl;
     auto start = std::chrono::high_resolution_clock::now();
     //auto results = TravellingTrojan(locations);
-    auto results = TravellingTrojan_2opt(locations);
+    //auto results = TravellingTrojan_2opt(locations);
+    auto results = TravellingTrojan_Genetic(locations);
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     CreateAnimation(results.second);
@@ -953,6 +954,85 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   results = std::make_pair(pathlen, res_vec);
   return results;
 }
+
+
+std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Genetic(
+      std::vector<std::string> &location_ids){
+  //reference - https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/
+  //location_ids: gene. results: chromosome/population
+  std::pair<double, std::vector<std::vector<std::string>>> results;
+  int population_size = 5, len = location_ids.size()+1; //initialize 10 permutations of cities
+  std::vector<std::vector<std::string>> population; //record permutations
+  std::vector<std::string> optimal_path;
+  double min_path_len = INT_MAX;
+  std::vector<std::vector<std::string>> res_vec;
+  location_ids.push_back(location_ids[0]);
+
+  for (int i=0; i<population_size; i++){
+    //shuffle the nodes except the start and end. every shuffle means a population
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    shuffle (location_ids.begin()+1, location_ids.end()-1, std::default_random_engine(seed));
+    population.push_back(location_ids);
+    res_vec.push_back(location_ids);
+    double d = CalculatePathLength(location_ids);
+    // initialize the optimal path and its length
+    if (d< min_path_len){
+      optimal_path = location_ids;
+      min_path_len = d;
+    }
+  }
+
+  int temperature = 10000, gen=0; //genernations
+
+  while (temperature > 1000 && gen<5){
+    std::vector<std::string> temp_len;
+
+    // all populations need to be updated
+    for (int i=0; i<population_size; i++){
+      temp_len = population[i];
+      while (true){
+
+        //mutation(swap the elements)
+        int j = (rand()%(len-2))+1, k=1; //[1,population_size-2]
+        while (true){
+          k = (rand()%(len-2))+1;
+          if (j!=k){break;}
+        }
+        std::swap(temp_len[j], temp_len[k]);
+
+        //update
+        double dis_origin = CalculatePathLength(population[i]);
+        double dis_new = CalculatePathLength(temp_len);
+        if (dis_origin > dis_new){
+          population[i] = temp_len;
+          res_vec.push_back(temp_len);
+          if (dis_new < min_path_len) {
+            min_path_len = dis_new;
+            optimal_path = temp_len;
+          }
+          break;
+        }
+
+        // Accepting the rejected population at a possible probability above threshold.
+        else{
+          float prob = pow(2.7,-1 * ((float)(dis_new- dis_origin)/ temperature));
+          if (prob > 0.5){
+            population[i] = temp_len;
+            res_vec.push_back(temp_len);
+            break;
+          }
+        }
+      }
+    }
+    temperature = (90*temperature)/100;
+    gen++;
+  }
+
+  res_vec.push_back(optimal_path);
+  results = std::make_pair(min_path_len, res_vec);
+  return results;
+}
+
 
 /**
  * Given CSV filename, it read and parse locations data from CSV file,
