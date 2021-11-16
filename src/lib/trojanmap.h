@@ -129,6 +129,9 @@ class TrojanMap {
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_2opt(
       std::vector<std::string> &location_ids);
     
+//   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_3opt(
+//       std::vector<std::string> &location_ids);
+
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_Genetic(
       std::vector<std::string> &location_ids);
 

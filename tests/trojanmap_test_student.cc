@@ -166,16 +166,56 @@ TEST(TrojanMapTest, CalculateShortestPath_Dijkstra2) {
 // }
 
 // Test Step5: Cycle detection function
-// TEST(TrojanMapTest, CycleDetection) {
-//   TrojanMap m;
-//   m.CreateGraphFromCSVFile();
-//   // Test case 1
-//   std::vector<double> square1 = {-118.299, -118.264, 34.032, 34.011};
-//   bool result1 = m.CycleDetection(square1);
-//   EXPECT_EQ(result1, true);
+TEST(TrojanMapTest, CycleDetection) {
+  TrojanMap m;
+  m.CreateGraphFromCSVFile();
+  // Test case 1
+  std::vector<double> square1 = {-118.278,-118.267,34.028,34.015};
+  bool result1 = m.CycleDetection(square1);
+  EXPECT_EQ(result1, true);
 
-//   // Test case 2
-//   std::vector<double> square2 = {-118.290919, -118.282911, 34.02235, 34.019675};
-//   bool result2 = m.CycleDetection(square2);
-//   EXPECT_EQ(result2, false);
-// }
+  // Test case 2
+  std::vector<double> square2 = {-118.294, -118.265, 34.031, 34.012};
+  bool result2 = m.CycleDetection(square2);
+  EXPECT_EQ(result2, true);
+
+  // Test case 3
+  std::vector<double> square3 = {-118.290, -118.286, 34.025, 34.020};
+  bool result3 = m.CycleDetection(square3);
+  EXPECT_EQ(result3, false);
+}
+
+// Test Step6: Topological Sort
+TEST(TrojanMapTest, TopologicalSort) {
+  TrojanMap m;
+  m.CreateGraphFromCSVFile();
+  //test case 1
+  std::vector<std::string> location_names1 = {"University Park", "Troy View Swimming Pool","CVS"};
+  std::vector<std::vector<std::string>> dependencies1 = {{"University Park","Troy View Swimming Pool"}, {"Troy View Swimming Pool","CVS"}, {"University Park","CVS"}};
+  auto result1 = m.DeliveringTrojan(location_names1, dependencies1);
+  std::vector<std::string> gt1 ={"University Park", "Troy View Swimming Pool","CVS"};
+  EXPECT_EQ(result1, gt1);
+  //test case 2
+  std::vector<std::string> location_names2 = {"Workshop Salon 38 Boutique", "USC Village Dining Hall","Coffee Bean2"};
+  std::vector<std::vector<std::string>> dependencies2 = {{"Workshop Salon 38 Boutique","USC Village Dining Hall"}, {"USC Village Dining Hall","Coffee Bean2"}, {"Workshop Salon 38 Boutique","Coffee Bean2"}};
+  auto result2 = m.DeliveringTrojan(location_names2, dependencies2);
+  std::vector<std::string> gt2 ={"Workshop Salon 38 Boutique", "USC Village Dining Hall","Coffee Bean2"};
+  EXPECT_EQ(result2, gt2);
+}
+
+// Test Step7: Find K closest points
+TEST(TrojanMapTest, FindKClosestPoints) {
+  TrojanMap m;
+  m.CreateGraphFromCSVFile();
+  //test case 1
+  auto result1 = m.FindKClosestPoints("Crosswalk1",5);
+  std::vector<std::string> gt1{
+  "6813416126", "358850043", "358850041", "6813405267","6987230635"};
+  EXPECT_EQ(result1, gt1);
+  //test case 2
+  auto result2 = m.FindKClosestPoints("Moreton Fig",10);
+  std::vector<std::string> gt2{
+  "5229911615", "5229911604", "2305853437", "2305853438","4399693645", 
+  "2817034894", "2817034895", "4399693644", "4536993737", "6474130386"};
+  EXPECT_EQ(result2, gt2);
+}

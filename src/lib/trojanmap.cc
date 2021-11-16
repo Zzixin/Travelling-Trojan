@@ -956,6 +956,42 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   return results;
 }
 
+// std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_3opt(
+//       std::vector<std::string> &location_ids){
+//   // reference:https://stackoverflow.com/questions/28282958/3-opt-optimization-code-for-tsp/28287109  
+//   std::pair<double, std::vector<std::vector<std::string>>> results;
+//   location_ids.push_back(location_ids[0]);
+//   std::vector<std::vector<std::string>> res_vec; //all the path
+//   std::vector<std::string> optimal_path = location_ids;
+//   int len=location_ids.size();
+//   double current_dist = CalculatePathLength(location_ids);
+//   double pathlen = current_dist;
+  
+//   while (true){
+//     int flag = 0;
+//     for(int i=1;i<len-3;i++){
+//       for (int j=1; j<len-2; j++){
+//         for (int k=i+1; k<len-1; k++){
+//           std::reverse(location_ids.begin()+j, location_ids.begin()+k+1);
+//           current_dist = CalculatePathLength(location_ids);
+//           res_vec.push_back(location_ids);
+//           if (current_dist < pathlen){
+//             pathlen = current_dist;
+//             optimal_path = location_ids;
+//             flag = 1;
+//           }
+//           else{std::reverse(location_ids.begin()+i, location_ids.begin()+k+1);}
+//         }
+//       }
+//     }
+//     if (flag == 0){break;}
+//   }
+
+//   res_vec.push_back(optimal_path);
+//   results = std::make_pair(pathlen, res_vec);
+//   return results;
+// }
+
 
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Genetic(
       std::vector<std::string> &location_ids){
