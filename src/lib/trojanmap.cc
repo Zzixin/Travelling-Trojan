@@ -895,6 +895,7 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   res_vec.push_back(optimal_path);
   results = std::make_pair(pathlen, res_vec);
   return results;
+
 }
 
 void TrojanMap::backtrack(std::vector<std::string> &points, std::vector<std::vector<std::string>> &res, 
@@ -917,6 +918,7 @@ void TrojanMap::backtrack(std::vector<std::string> &points, std::vector<std::vec
     std::swap(points[current], points[i]); //revoke swap
   }
 }
+  
 
 
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_2opt(
@@ -950,7 +952,6 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
     }
     if (flag == 0){break;}
   }
-
   res_vec.push_back(optimal_path);
   results = std::make_pair(pathlen, res_vec);
   return results;

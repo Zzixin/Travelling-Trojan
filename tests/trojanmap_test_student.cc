@@ -146,24 +146,63 @@ TEST(TrojanMapTest, CalculateShortestPath_Dijkstra2) {
 }
 
 // Test Step4: The traveling Trojan Problem function 1
-// TEST(TrojanMapTest, TSP) {
-//   TrojanMap m;
-//   m.CreateGraphFromCSVFile();
-//   std::vector<std::string> input{"1873056015", "6905329551", "213332060", "1931345270"}; // Input location ids 
-//   // auto result = m.TravellingTrojan(input);
-//   auto result = m.TravellingTrojan_2opt(input);
-//   std::cout << "My path length: "  << result.first << "miles" << std::endl; // Print the result path lengths
-//   std::vector<std::string> gt{"1873056015", "213332060", "1931345270", "6905329551", "1873056015"}; // Expected order
-//   std::cout << "GT path length: "  << m.CalculatePathLength(gt) << "miles" << std::endl; // Print the gt path lengths
-//   bool flag = false;
-//   if (gt == result.second[result.second.size()-1]) // clockwise
-//     flag = true;
-//   std::reverse(gt.begin(),gt.end()); // Reverse the expected order because the counterclockwise result is also correct
-//   if (gt == result.second[result.second.size()-1]) 
-//     flag = true;
+TEST(TrojanMapTest, TSP) {
+  TrojanMap m;
+  m.CreateGraphFromCSVFile();
+  std::vector<std::string> input{"63785495", "123178896", "123660671", "6813379466"}; // Input location ids 
+  // auto result = m.TravellingTrojan(input);
+  auto result = m.TravellingTrojan_2opt(input);
+  std::cout << "My path length: "  << result.first << "miles" << std::endl; // Print the result path lengths
+  std::vector<std::string> gt{"63785495", "6813379466", "123660671", "123178896", "63785495"}; // Expected order
+  std::cout << "GT path length: "  << m.CalculatePathLength(gt) << "miles" << std::endl; // Print the gt path lengths
+  bool flag = false;
+  if (gt == result.second[result.second.size()-1]) // clockwise
+    flag = true;
+  std::reverse(gt.begin(),gt.end()); // Reverse the expected order because the counterclockwise result is also correct
+  if (gt == result.second[result.second.size()-1]) 
+    flag = true;
   
-//   EXPECT_EQ(flag, true);
-// }
+  EXPECT_EQ(flag, true);
+}
+
+// Test Step4: The traveling Trojan Problem function 2
+TEST(TrojanMapTest, TSP2) {
+  TrojanMap m;
+  m.CreateGraphFromCSVFile();
+  std::vector<std::string> input{"123178896", "123302797", "7668796165", "1837206580", "4020099357", "7771782317"}; // Input location ids 
+  // auto result = m.TravellingTrojan(input); 
+  auto result = m.TravellingTrojan_2opt(input);
+  std::cout << "My path length: " << result.first << "miles" << std::endl; // Print the result path lengths
+  std::vector<std::string> gt{"123178896", "1837206580", "4020099357", "7668796165", "123302797","7771782317",  "123178896"}; // Expected order
+  std::cout << "GT path length: " << m.CalculatePathLength(gt) << "miles" << std::endl; // Print the groundtruth path lengths
+  bool flag = false;
+  if (gt == result.second[result.second.size()-1]) // clockwise
+    flag = true;
+  std::reverse(gt.begin(),gt.end()); // Reverse the expected order because the counterclockwise result is also correct
+  if (gt == result.second[result.second.size()-1]) // counterclockwise
+    flag = true;
+  EXPECT_EQ(flag, true);
+}
+
+// Test Step4: The traveling Trojan Problem function 3
+TEST(TrojanMapTest, TSP3) {
+  TrojanMap m;
+  m.CreateGraphFromCSVFile();
+  std::vector<std::string> input{"5567733799", "6817111153", "4012693772", "4012726926", "6047204780", "6816180156", "123178873", "3574052697", "123715912", "6503044367"}; // Input location ids 
+  auto result = m.TravellingTrojan(input);
+  // auto result = m.TravellingTrojan_2opt(input);
+  std::cout << "My path length: " <<result.first << "miles" << std::endl; // Print the result path lengths
+  std::vector<std::string> gt{"5567733799", "6047204780", "6503044367", "4012726926", "123715912", "3574052697", "4012693772", "6817111153", "6816180156", "123178873", "5567733799"}; // Expected order
+  std::cout << "GT path length: " << m.CalculatePathLength(gt) << "miles" << std::endl; // Print the groundtruth path lengths
+  bool flag = false;
+  if (gt == result.second[result.second.size()-1]) // clockwise
+    flag = true;
+  std::reverse(gt.begin(),gt.end()); // Reverse the expected order because the counterclockwise result is also correct
+  if (gt == result.second[result.second.size()-1]) // counterclockwise
+    flag = true;
+  
+  EXPECT_EQ(flag, true);
+}
 
 // Test Step5: Cycle detection function
 TEST(TrojanMapTest, CycleDetection) {
