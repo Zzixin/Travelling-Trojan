@@ -18,9 +18,11 @@ Time spent:
 **************************************************************
 
 Please input a partial location:ch
+
 *************************Results******************************
 ChickfilA
 Chipotle Mexican Grill
+
 **************************************************************
 Time taken by function: 5594 microseconds
 
