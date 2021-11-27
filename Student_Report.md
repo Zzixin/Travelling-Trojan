@@ -17,8 +17,8 @@ Example:
 Input: "ch" \
 Output: ["ChickfilA", "Chipotle Mexican Grill"]
 
-Input: "ta" \
-Output: ["Target", "Tap Two Blue"]
+Input: "cr" \
+Output: ["Crosswalk2", "Crosswalk1","Crosswalk3"]
 
 ```shell
 **************************************************************
@@ -36,12 +36,13 @@ Time taken by function: 5594 microseconds
 * 1. Autocomplete                                             
 **************************************************************
 
-Please input a partial location:ta
+Please input a partial location:cr
 *************************Results******************************
-Tap Two Blue
-Target
+Crosswalk2
+Crosswalk1
+crosswalk3
 **************************************************************
-Time taken by function: 5147 microseconds
+Time taken by function: 5822 microseconds
 ```
 
 ## Step2: Find the place's coordinates in the map:
@@ -60,6 +61,9 @@ Output: (34.0167, -118.283)
 
 Input: "Tap Two Blue" \
 Output: (34.0312, -118.274)
+
+Input: "crosswalk3" \
+Output: (34.0284, -118.287)
 
 ```shell
 * 2. Find the position                                        
@@ -80,4 +84,14 @@ Please input a location:Tap Two Blue
 Latitude: 34.0312 Longitude: -118.274
 **************************************************************
 Time taken by function: 1185 microseconds
+
+**************************************************************
+* 2. Find the position                                        
+**************************************************************
+
+Please input a location:crosswalk3
+*************************Results******************************
+Latitude: 34.0284 Longitude: -118.287
+**************************************************************
+Time taken by function: 4242 microseconds
 ```
