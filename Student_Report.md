@@ -53,6 +53,15 @@ Time complexity: O(n).
 
 Time spent: 
 
+Example:
+
+Input: "ChickfilA" \
+Output: (34.0167, -118.283)
+
+Input: "Tap Two Blue" \
+Output: (34.0312, -118.274)
+
+```shell
 * 2. Find the position                                        
 **************************************************************
 
@@ -71,3 +80,4 @@ Please input a location:Tap Two Blue
 Latitude: 34.0312 Longitude: -118.274
 **************************************************************
 Time taken by function: 1185 microseconds
+```
