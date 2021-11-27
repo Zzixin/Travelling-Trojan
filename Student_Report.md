@@ -12,17 +12,23 @@ Time complexity: O(n*input.size()).
 eg: if the input is 'ch', then the time complexity is O(2n)
 
 Time spent: 
+Example:
 
+Input: "ch" \
+Output: ["ChickfilA", "Chipotle Mexican Grill"]
+
+Input: "ta" \
+Output: ["Target", "Tap Two Blue"]
+
+```shell
 **************************************************************
 * 1. Autocomplete                                             
 **************************************************************
 
 Please input a partial location:ch
-
 *************************Results******************************
 ChickfilA
 Chipotle Mexican Grill
-
 **************************************************************
 Time taken by function: 5594 microseconds
 
@@ -36,6 +42,7 @@ Tap Two Blue
 Target
 **************************************************************
 Time taken by function: 5147 microseconds
+```
 
 ## Step2: Find the place's coordinates in the map:
 For this function, the input is the location name. And we want the latitude and longitude of the location name in the output. If the given location does not exist, then return (-1,-1).
