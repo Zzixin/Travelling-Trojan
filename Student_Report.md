@@ -99,9 +99,9 @@ Time taken by function: 4242 microseconds
 ## Step3: CalculateShortestPath_Dijkstra:
 ## Step4: The traveling Trojan Problem:
 ## Step5: Cycle detection:
-For this section, we use a square-shaped subgraph of the original graph by using four corrdinates. And it follows the order of left, right, upper and lower bounds. We are tring to determine if there is a circle path in that subgraph.
+For this section, we use a square-shaped subgraph of the original graph by using four corrdinates. And it follows the order of left, right, upper and lower bounds. We are tring to determine if there is a cycle path in that subgraph.
 
-First, we can get the left, right, upper and lower bounds from the ```std::vector<double> square```. Second, we go through the data's latitude and longtitude to see any points are in the square and we push back to vector which named points. We are using DFS for the circle detection, we need to consider the parent in the circle detection incase there are two nodes that is detected as a circle. Then, we use a map with booling named visited, we set every point in points are false. And go through all the points using recursive DFS. Eventually, we plot the path and square out.
+First, we can get the left, right, upper and lower bounds from the ```std::vector<double> square```. Second, we go through the data's latitude and longtitude to see any points are in the square and we push back to vector which named points. We are using DFS for the cycle detection, we need to consider the parent in the cycle detection incase there are two nodes that is detected as a cycle. Then, we use a map with booling named visited, we set every point in points are false. And go through all the points using recursive DFS. Eventually, we plot the path and square out.
 
 Time complexity: 
 
@@ -113,5 +113,7 @@ Input: square = {-118.278,-118.267,34.028,34.015}
 Output: true
 ```
 <p align="center"><img src="img/Student_cycle1.png"  width="500"/></p>
+
+
 ## Step6: Topological Sort:
 ## Step7: Find K closest points:
