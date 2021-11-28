@@ -112,6 +112,22 @@ Example 1:
 Input: square = {-118.278,-118.267,34.028,34.015}
 Output: true
 ```
+
+```shell
+**************************************************************
+* 5. Cycle Detection                                          
+**************************************************************
+
+Please input the left bound longitude(between -118.299 and -118.264):-118.278
+Please input the right bound longitude(between -118.299 and -118.264):-118.267
+Please input the upper bound latitude(between 34.011 and 34.032):34.028
+Please input the lower bound latitude(between 34.011 and 34.032):34.015
+*************************Results******************************
+there exists cycle in the subgraph 
+**************************************************************
+Time taken by function: 206059 microseconds
+```
+
 <p align="center"><img src="img/Student_cycle1.png"  width="500"/></p>
 
 
