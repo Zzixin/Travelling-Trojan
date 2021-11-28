@@ -95,3 +95,9 @@ Latitude: 34.0284 Longitude: -118.287
 **************************************************************
 Time taken by function: 4242 microseconds
 ```
+
+## Step3: CalculateShortestPath_Dijkstra:
+## Step4: The traveling Trojan Problem:
+## Step5: Cycle detection:
+## Step6: Topological Sort:
+## Step7: Find K closest points:
