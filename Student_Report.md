@@ -112,6 +112,6 @@ Example 1:
 Input: square = {-118.278,-118.267,34.028,34.015}
 Output: true
 ```
-<p align="center"><img src="img/Student_cycle1.png" alt="TSP" width="500"/></p>
+<p align="center"><img src="img/Student_cycle1.png"  width="500"/></p>
 ## Step6: Topological Sort:
 ## Step7: Find K closest points:
