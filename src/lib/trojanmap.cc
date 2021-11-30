@@ -1268,7 +1268,7 @@ std::vector<std::string> TrojanMap::FindKClosestPoints(std::string name, int k) 
 
   while (!q.empty()){
     res.push_back(q.top().second);
-    std::cout << q.top().second<<": "<<q.top().first<<std::endl;
+    // std::cout << q.top().second<<": "<<q.top().first<<std::endl;
     q.pop();
   }
   std::reverse(res.begin(), res.end());

@@ -155,3 +155,60 @@ Time taken by function: 264530 microseconds
 
 ## Step6: Topological Sort:
 ## Step7: Find K closest points:
+For this section, we are going to find the k closest location with the name on the map and return a vector of string ids.
+
+We are using heap for this section. First, we create a priority queue and set the return vector to be the k sizes. Then, we get the location name and the location's latitude and longitude. After that, we calculate the distance and put that in the queue. If the size of queue is equal to k size, then we compare the distance we calculated with the distance in the queue. If the distance we calculated is smaller than the distance in the queue. We replace it with the smallest one.
+
+Time complexity: 
+
+Time spent: 
+
+```shell
+**************************************************************
+* 7. Find K Closest Points                                    
+**************************************************************
+
+Please input the locations:Ralphs
+Please input k:5
+358794109: 0.121023
+358828789: 0.105633
+7158047272: 0.0997647
+358791507: 0.0848742
+3724125231: 0.0584317
+*************************Results******************************
+Find K Closest Points Results:
+1 St Agnes Church
+2 Saint Agnes Elementary School
+3 Warning Skate Shop
+4 Menlo AvenueWest Twentyninth Street Historic District
+5 Vermont Elementary School
+**************************************************************
+Time taken by function: 6171 microseconds
+```
+
+```shell
+**************************************************************
+* 7. Find K Closest Points                                    
+**************************************************************
+
+Please input the locations:Moreton Fig
+Please input k:7
+2817034895: 0.0789534
+2817034894: 0.0732835
+4399693645: 0.0651576
+2305853438: 0.0630711
+2305853437: 0.0540357
+5229911604: 0.0426097
+5229911615: 0.0305817
+*************************Results******************************
+Find K Closest Points Results:
+1 Student Union STU
+2 Tutor Campus Center Piano
+3 Traveler39s Fountain
+4 Tommy Trojan
+5 George Tirebiter
+6 Allan Hancock Foundation
+7 Newman Recital Hall in Hancock Foundation
+**************************************************************
+Time taken by function: 4952 microseconds
+```
