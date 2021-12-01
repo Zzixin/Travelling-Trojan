@@ -74,7 +74,7 @@ Latitude: 34.0167 Longitude: -118.283
 **************************************************************
 Time taken by function: 1476 microseconds
 ```
-<p align="center"><img src="img/ChickfilA.png" alt="ChickfilA" width="500"/></p>
+<p align="center"><img src="img/Student_ChickfilA.png" alt="ChickfilA" width="500"/></p>
 
 ```shell
 * 2. Find the position                                        
@@ -96,7 +96,7 @@ Latitude: 34.0284 Longitude: -118.287
 **************************************************************
 Time taken by function: 4242 microseconds
 ```
-<p align="center"><img src="img/Student_crosswalk3" alt="crosswalk3" width="500"/></p>
+<p align="center"><img src="img/Student_crosswalk3.png" alt="crosswalk3" width="500"/></p>
 
 ## Step3: CalculateShortestPath:
 ## Step4: The traveling Trojan Problem:
