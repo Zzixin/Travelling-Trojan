@@ -68,35 +68,37 @@ Output: (34.0284, -118.287)
 ```shell
 * 2. Find the position                                        
 **************************************************************
-
 Please input a location:ChickfilA
 *************************Results******************************
 Latitude: 34.0167 Longitude: -118.283
 **************************************************************
 Time taken by function: 1476 microseconds
+```
+<p align="center"><img src="img/ChickfilA.png" alt="ChickfilA" width="500"/></p>
 
-**************************************************************
+```shell
 * 2. Find the position                                        
 **************************************************************
-
 Please input a location:Tap Two Blue
 *************************Results******************************
 Latitude: 34.0312 Longitude: -118.274
 **************************************************************
 Time taken by function: 1185 microseconds
+```
+<p align="center"><img src="img/Student_Tap Two Blue.png" alt="Tap Two Blue" width="500"/></p>
 
-**************************************************************
+```shell
 * 2. Find the position                                        
 **************************************************************
-
 Please input a location:crosswalk3
 *************************Results******************************
 Latitude: 34.0284 Longitude: -118.287
 **************************************************************
 Time taken by function: 4242 microseconds
 ```
+<p align="center"><img src="img/Student_crosswalk3" alt="crosswalk3" width="500"/></p>
 
-## Step3: CalculateShortestPath_Dijkstra:
+## Step3: CalculateShortestPath:
 ## Step4: The traveling Trojan Problem:
 ## Step5: Cycle detection:
 For this section, we use a square-shaped subgraph of the original graph by using four corrdinates. And it follows the order of left, right, upper and lower bounds. We are tring to determine if there is a cycle path in that subgraph.
