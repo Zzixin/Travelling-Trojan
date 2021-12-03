@@ -174,9 +174,9 @@ void TrojanMap::PrintMenu() {
     PlotPoints(locations);
     std::cout << "Calculating ..." << std::endl;
     auto start = std::chrono::high_resolution_clock::now();
-    auto results = TravellingTrojan(locations);
-    //auto results = TravellingTrojan_2opt(locations);
-    //auto results = TravellingTrojan_Genetic(locations);
+    // auto results = TravellingTrojan(locations);
+    auto results = TravellingTrojan_2opt(locations);
+    // auto results = TravellingTrojan_Genetic(locations);
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     CreateAnimation(results.second);
@@ -1329,7 +1329,7 @@ std::vector<std::string> TrojanMap::FindKClosestPoints(std::string name, int k) 
 
   while (!q.empty()){
     res.push_back(q.top().second);
-    // std::cout << q.top().second<<": "<<q.top().first<<std::endl;
+    std::cout << q.top().second<<": "<<q.top().first<<std::endl;
     q.pop();
   }
   std::reverse(res.begin(), res.end());

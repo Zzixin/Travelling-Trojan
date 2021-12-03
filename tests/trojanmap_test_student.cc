@@ -240,6 +240,12 @@ TEST(TrojanMapTest, TopologicalSort) {
   auto result2 = m.DeliveringTrojan(location_names2, dependencies2);
   std::vector<std::string> gt2 ={"Workshop Salon 38 Boutique", "USC Village Dining Hall","Coffee Bean2"};
   EXPECT_EQ(result2, gt2);
+  //test case 3
+  std::vector<std::string> location_names3 = {"Saint Marks Lutheran Church", "Trinity Elementary School","Ralphs"};
+  std::vector<std::vector<std::string>> dependencies3 = {{"Saint Marks Lutheran Church","Trinity Elementary School"}, {"Saint Marks Lutheran Church","Ralphs"}, {"Trinity Elementary School","Ralphs"}};
+  auto result3 = m.DeliveringTrojan(location_names3, dependencies3);
+  std::vector<std::string> gt3 ={"Saint Marks Lutheran Church", "Trinity Elementary School","Ralphs"};
+  EXPECT_EQ(result3, gt3);
 }
 
 // Test Step7: Find K closest points
@@ -257,4 +263,10 @@ TEST(TrojanMapTest, FindKClosestPoints) {
   "5229911615", "5229911604", "2305853437", "2305853438","4399693645", 
   "2817034894", "2817034895", "4399693644", "4536993737", "6474130386"};
   EXPECT_EQ(result2, gt2);
+  //test case 3
+  auto result3 = m.FindKClosestPoints("Parking Center",7);
+  std::vector<std::string> gt3{
+  "6939732877", "4400281328", "4732965439", "6655857589","6815182445", 
+  "6206425701", "5231970321"};
+  EXPECT_EQ(result3, gt3);
 }
