@@ -123,10 +123,10 @@ class TrojanMap {
   // path.)
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan(
       std::vector<std::string> &location_ids);
-  // void backtrack(std::vector<std::string> &points, std::vector<std::vector<std::string>> &res, 
-  //                       int current, double &pathlen, std::vector<std::string> &optimal_path);
   void backtrack(std::vector<std::string> &points, std::vector<std::vector<std::string>> &res, 
-                         double &pathlen, std::vector<std::string> &optimal_path, std::vector<std::string> &current_path);
+                          int current, double &cur_len, double &pathlen, std::vector<std::string> &optimal_path);
+  // void backtrack(std::vector<std::string> &points, std::vector<std::vector<std::string>> &res, 
+  //                        double &pathlen, std::vector<std::string> &optimal_path, std::vector<std::string> &current_path);
 
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_2opt(
       std::vector<std::string> &location_ids);
@@ -136,6 +136,12 @@ class TrojanMap {
 
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_Genetic(
       std::vector<std::string> &location_ids);
+
+  std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_bruteforce(
+                                    std::vector<std::string> &location_ids);
+  void backtrack_bruteforce(std::vector<std::string> &points, std::vector<std::vector<std::string>> &res, 
+                          int current, double &pathlen, std::vector<std::string> &optimal_path);
+
 
   // Given a subgraph specified by a square-shape area, determine whether there is a
   // cycle or not in this subgraph.
