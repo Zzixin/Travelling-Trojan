@@ -169,14 +169,28 @@ As we can see, the runtime of Dijkstra is less than the Bellman_Ford.
 
 
 ## Step4: The traveling Trojan Problem:
-#### 1. Backtracking
+#### 1. Brute force
+
+#### 2. Backtracking
 In this section, we implement Backtracking algorithm to solve Traveling Trojan Problem.
 **time complexity:** $O(n^2*n!)$
 
 
-#### 2. 2-opt
+#### 3. 2-opt
 **time complexity:** $O(n^3)$
 
+
+#### 4. Genetic
+
+
+#### 5. Runtime compard between Brute force, backtracking, 2-opt and Genetic
+We listed several examples to compare the runtime between Brute force, backtracking, 2-opt and Genetic.
+
+<p align="center"><img src="img/Student_table2.png"  width="400"/></p>
+
+<p align="center"><img src="img/Student_compare.png"  width="400"/></p>
+
+As we can see, the runtime of brute force is much higher than others when the number of nodes get larger.
 
 ## Step5: Cycle detection:
 For this section, we use a square-shaped subgraph of the original graph by using four corrdinates. And it follows the order of left, right, upper and lower bounds. We are tring to determine if there is a cycle path in that subgraph.
