@@ -158,6 +158,15 @@ Because we will implement edge relaxations O(n) time and evry edge relaxation co
 
 **Examples and Time taken by function:**
 
+### 3. Runtime compard between Dijkstra and Bellman-Ford
+We listed 10 examples to compare the runtime between Dijkstra and Bellman_Ford. 
+
+<p align="center"><img src="img/Student_table1.png"  width="400"/></p>
+
+<p align="center"><img src="img/Student_comparedandb.png"  width="400"/></p>
+
+As we can see, the runtime of Dijkstra is less than the Bellman_Ford.
+
 
 ## Step4: The traveling Trojan Problem:
 #### 1. Backtracking
