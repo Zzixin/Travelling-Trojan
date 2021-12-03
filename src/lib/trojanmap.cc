@@ -174,16 +174,12 @@ void TrojanMap::PrintMenu() {
     PlotPoints(locations);
     std::cout << "Calculating ..." << std::endl;
     auto start = std::chrono::high_resolution_clock::now();
-<<<<<<< Updated upstream
-    // auto results = TravellingTrojan(locations);
-    auto results = TravellingTrojan_2opt(locations);
-    // auto results = TravellingTrojan_Genetic(locations);
-=======
-    //auto results = TravellingTrojan(locations);
-    auto results = TravellingTrojan_bruteforce(locations);
+
+    auto results = TravellingTrojan(locations);
+    //auto results = TravellingTrojan_bruteforce(locations);
     //auto results = TravellingTrojan_2opt(locations);
     //auto results = TravellingTrojan_Genetic(locations);
->>>>>>> Stashed changes
+
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     CreateAnimation(results.second);
