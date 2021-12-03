@@ -175,6 +175,7 @@ void TrojanMap::PrintMenu() {
     std::cout << "Calculating ..." << std::endl;
     auto start = std::chrono::high_resolution_clock::now();
 <<<<<<< HEAD
+<<<<<<< HEAD
     auto results = TravellingTrojan(locations);
     // auto results = TravellingTrojan_2opt(locations);
 =======
@@ -186,9 +187,14 @@ void TrojanMap::PrintMenu() {
 =======
     //auto results = TravellingTrojan(locations);
     auto results = TravellingTrojan_bruteforce(locations);
+=======
+
+    auto results = TravellingTrojan(locations);
+    //auto results = TravellingTrojan_bruteforce(locations);
+>>>>>>> e47d24dea71933f58ff20206b5eac1e69f62a289
     //auto results = TravellingTrojan_2opt(locations);
     //auto results = TravellingTrojan_Genetic(locations);
->>>>>>> Stashed changes
+
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     CreateAnimation(results.second);
