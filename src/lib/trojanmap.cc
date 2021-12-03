@@ -174,9 +174,16 @@ void TrojanMap::PrintMenu() {
     PlotPoints(locations);
     std::cout << "Calculating ..." << std::endl;
     auto start = std::chrono::high_resolution_clock::now();
+<<<<<<< Updated upstream
     // auto results = TravellingTrojan(locations);
     auto results = TravellingTrojan_2opt(locations);
     // auto results = TravellingTrojan_Genetic(locations);
+=======
+    //auto results = TravellingTrojan(locations);
+    auto results = TravellingTrojan_bruteforce(locations);
+    //auto results = TravellingTrojan_2opt(locations);
+    //auto results = TravellingTrojan_Genetic(locations);
+>>>>>>> Stashed changes
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     CreateAnimation(results.second);
@@ -890,19 +897,48 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   std::pair<double, std::vector<std::vector<std::string>>> results;
   std::vector<std::vector<std::string>> res_vec;
   std::vector<std::string> optimal_path;
-  std::vector<std::string> current_path;
-  double pathlen = INT_MAX; //minimal length
-  current_path.push_back(location_ids[0]);
+  //std::vector<std::string> current_path;
+  double pathlen = INT_MAX, cur_len = 0; //minimal length
+  //current_path.push_back(location_ids[0]);
   //location_ids.push_back(location_ids[0]); //route needs to go back to the starting point
   //backtrack will totally be invoked O(n!), push_back O(n). tatal:O(n*n!)
-  backtrack(location_ids, res_vec, pathlen, optimal_path, current_path);
-  //backtrack(location_ids, res_vec, 1, pathlen, optimal_path);
+  //backtrack(location_ids, res_vec, pathlen, optimal_path, current_path);
+  backtrack(location_ids, res_vec, 1, cur_len, pathlen, optimal_path);
   res_vec.push_back(optimal_path);
   results = std::make_pair(pathlen, res_vec);
   return results;
 }
 
-//5683853
+//1006309
+void TrojanMap::backtrack(std::vector<std::string> &points, std::vector<std::vector<std::string>> &res, 
+                          int current, double &cur_len, double &pathlen, std::vector<std::string> &optimal_path){
+  //reference - lc46
+  //stable state
+  if (current == points.size()){
+    double templen = CalculateDistance(points[current-1], points[0]); //it's a circle!
+    if (templen+cur_len < pathlen){
+      pathlen = templen + cur_len;
+      optimal_path = points;
+      optimal_path.push_back(points[0]);
+      res.push_back(optimal_path); //records O(n)
+    }
+    return;
+  }
+
+  for (int i=current; i<points.size(); i++){
+    double templen2 = CalculateDistance(points[current-1], points[i]);
+    if (cur_len + templen2 < pathlen){ //early backtrack
+      cur_len += templen2; //add the next distance
+      std::swap(points[current], points[i]); //O(1), swap two elements
+      backtrack(points, res, current+1, cur_len, pathlen, optimal_path);
+      std::swap(points[current], points[i]); //revoke swap
+      cur_len -= templen2; //revoke the add
+    }
+  }
+}
+
+
+/*
 void TrojanMap::backtrack(std::vector<std::string> &points, std::vector<std::vector<std::string>> &res, 
                           double &pathlen, std::vector<std::string> &optimal_path, std::vector<std::string> &current_path){
   //reference - lc46
@@ -929,11 +965,24 @@ void TrojanMap::backtrack(std::vector<std::string> &points, std::vector<std::vec
     }
   }
 }
+*/
 
+std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_bruteforce(
+                                    std::vector<std::string> &location_ids) {
+  std::pair<double, std::vector<std::vector<std::string>>> results;
+  std::vector<std::vector<std::string>> res_vec;
+  std::vector<std::string> optimal_path;
+  double pathlen = INT_MAX; //minimal length
+  location_ids.push_back(location_ids[0]); //route needs to go back to the starting point
+  //backtrack will totally be invoked O(n!), push_back O(n). tatal:O(n*n!)
+  backtrack_bruteforce(location_ids, res_vec, 1, pathlen, optimal_path);
+  res_vec.push_back(optimal_path);
+  results = std::make_pair(pathlen, res_vec);
+  return results;
+}
 
-/*
-//1006309
-void TrojanMap::backtrack(std::vector<std::string> &points, std::vector<std::vector<std::string>> &res, 
+/*bruteforce*/
+void TrojanMap::backtrack_bruteforce(std::vector<std::string> &points, std::vector<std::vector<std::string>> &res, 
                           int current, double &pathlen, std::vector<std::string> &optimal_path){
   //reference - lc46
   //stable state
@@ -949,37 +998,10 @@ void TrojanMap::backtrack(std::vector<std::string> &points, std::vector<std::vec
 
   for (int i=current; i<points.size()-1; i++){
     std::swap(points[current], points[i]); //O(1), swap two elements
-    std::vector<std::string> temp_vec(points.begin(), points.begin()+current);
-    temp_vec.push_back(points[i]);
-    if (CalculatePathLength(temp_vec)<pathlen){
-      backtrack(points, res, current+1, pathlen, optimal_path);
-    }
+    backtrack_bruteforce(points, res, current+1, pathlen, optimal_path);
     std::swap(points[current], points[i]); //revoke swap
   }
 }
-*/
-
-/*bruteforce*/
-// void TrojanMap::backtrack(std::vector<std::string> &points, std::vector<std::vector<std::string>> &res, 
-//                           int current, double &pathlen, std::vector<std::string> &optimal_path){
-//   //reference - lc46
-//   //stable state
-//   if (current == points.size()-1){
-//     res.push_back(points); //records O(n)
-//     double templen = CalculatePathLength(points);
-//     if (templen < pathlen){
-//       pathlen = templen;
-//       optimal_path = points;
-//     }
-//     return;
-//   }
-
-//   for (int i=current; i<points.size()-1; i++){
-//     std::swap(points[current], points[i]); //O(1), swap two elements
-//     backtrack(points, res, current+1, pathlen, optimal_path);
-//     std::swap(points[current], points[i]); //revoke swap
-//   }
-// }
 
 
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_2opt(
@@ -1060,7 +1082,12 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   //reference - https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/
   //location_ids: gene. results: chromosome/population
   std::pair<double, std::vector<std::vector<std::string>>> results;
-  int population_size = 5, len = location_ids.size()+1; //initialize 10 permutations of cities
+  if (location_ids.size() == 2){
+    location_ids.push_back(location_ids[0]);
+    results.second.push_back(location_ids);
+    results.first = CalculatePathLength(results.second[0]);
+  } 
+  int population_size = 6, len = location_ids.size()+1; //initialize 10 permutations of cities
   std::vector<std::vector<std::string>> population; //record permutations
   std::vector<std::string> optimal_path;
   double min_path_len = INT_MAX;
