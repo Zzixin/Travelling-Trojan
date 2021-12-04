@@ -1216,6 +1216,9 @@ std::vector<std::string> TrojanMap::DeliveringTrojan(std::vector<std::string> &l
                                                      std::vector<std::vector<std::string>> &dependencies){
   //reference - https://www.geeksforgeeks.org/topological-sorting/
   std::vector<std::string> result;
+  if (locations.size()==0) {return result;}
+  if (dependencies.size() ==0) {return locations;}
+
   //std::stack<std::string> res_stack;
   std::unordered_map<std::string, int> mark;
   std::unordered_map<std::string, std::vector<std::string>> edge_map;
