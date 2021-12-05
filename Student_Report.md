@@ -7,9 +7,8 @@ For this function, we are going to conside the names of nodes as the locations. 
 
 First, we transform the input name and all the location name of data to lowercase. And we set a flag to 1, if the input name size bigger than the location name of data, we change the flag to 0, if not, we go through the location name of data with size of input name. Then, we push back the result to the vector.
 
-**Time complexity:** O(n*name.size()). n represents the number of nodes in the map. The fist for-loop costs O(n) and the second for-loop costs O(name.size()).
+**Time complexity:** O(n*name.size()). n represents the number of nodes in the map. name.size() represents the number of characters of the input name. In the trojan map, there are 2237 nodes totally. The fist for-loop costs O(n) and the second for-loop costs O(name.size()).
 
-eg: if the input name is 'ch', then the time complexity is O(2n)
 
 **Examples and Time taken by function:**
 
@@ -105,11 +104,11 @@ Time taken by function: 4242 microseconds
 ### 1. Dijkstra
 We use ```priority_queue``` to implement Dijkstra Algorithm. The input is the names of start locaton and end location. We expect the shortest path between these two locations.
 
-- First, we initialize the unordered_map ```distance```, which records the shortest distance value between the location and the start node. The values of ```distance``` are set to INT_MAX and we assign distance value as 0 for the start node, so that it can be picked first.
-- Then we use priority_queue ```q```, which is the min-heap, to record the pair of the shortest distance to the start node and the location id.
-- While ```q``` is not empty, we implement edge relaxation. We choose a ```min_node``` with the shortest distance to the start node. Iterate through all the neighbors of ```min_node```, for every neighbor, if the new distance value (go through ```min_node```) is less than the original one, then its distance value will be updated. 
+- First, we initialize the unordered_map ```distance```, which records the shortest distance value between the location and the source node. The values of ```distance``` are set to INT_MAX and we assign distance value as 0 for the source node, so that it can be picked first.
+- Then we use priority_queue ```q```, which is the min-heap, to record the pair of the shortest distance to the start node and the location id. Hence, fine the node with the shortest distance can just cost O(logn).
+- While ```q``` is not empty, we implement edge relaxation. We choose a ```min_node``` with the shortest distance to the source node. Iterate through all the neighbors of ```min_node```, for every neighbor, if the new distance value (go through ```min_node```) is less than the original one, then its distance value will be updated. 
 - When implementing edge relaxation, we use unordered_map ```pre``` to record the predecessor of the node. If the distance value of min_node's neighbor is updated, then the predecessor of the neighbor is ```min_node```.
-- When ```q``` is empty, we can get the shortest distance tree from the start node to the end node with the help of ```pre```.
+- When ``min_node`` is the destination node, we break the while loop. Then the shortest distance tree from the source node to the destination node can be got with the help of ```pre```.
 
 **Time complexity:** O((m+n)*logn). m represents the number of edges and n represents the number of nodes.
 
@@ -118,6 +117,7 @@ We use ```priority_queue``` to implement Dijkstra Algorithm. The input is the na
 
 **Examples and Time taken by function:**
 ```shell
+**************************************************************
 * 3. CalculateShortestPath                                    
 **************************************************************
 
@@ -149,14 +149,45 @@ Time taken by function: 15594 microseconds
 ### 2. Bellman-Ford
 In this section, we implement Bellman-Ford algorithm. 
 - First, we initialize a map ```distance``` of size n(n represents the number of nodes) with all distance values from the source to other nodes as infinite(INT_MAX) except the ```dist[start]```, which is 0.
-- Then we do edge relaxation for n-1 times, n represents the number of nodes in the map. Because the start node to any other node in the map can have at most n-1 edges. 
+- Then we do edge relaxation for n-1 times. Because the source node to any other node in the map can have at most n-1 edges. 
 - When implementing edge relaxation, we use a map ```pre``` to record the predecessor of the node so that we can get a shortest path tree in the end. And we also set a flag, when there is no change in an edge relaxation, which means the shortest path tree strike a balance, we will break the loop.
+- Finally, we can get the shortest path with the help of ```pre```.
 
 **Time complexity:** O(n*m), n represents the number of nodes and m represents the number of edges in the map.
 
 Because we will implement edge relaxations O(n) time and evry edge relaxation costs O(m). Therefor the time complexity if O(n*m).
 
 **Examples and Time taken by function:**
+```shell
+* 3. CalculateShortestPath                                    
+**************************************************************
+
+Please input the start location:Ralphs
+Please input the destination:ChickfilA
+*************************Results******************************
+
+The distance of the path is:1.53852 miles
+**************************************************************
+Time taken by function: 303327 microseconds
+```
+<p align="center"><img src="img/bellmanford1.png"  width="400"/></p>
+
+```shell
+* 3. CalculateShortestPath                                    
+**************************************************************
+
+Please input the start location:Target
+Please input the destination:ChickfilA
+*************************Results******************************
+
+The distance of the path is:0.841394 miles
+**************************************************************
+Time taken by function: 271712 microseconds
+```
+<p align="center"><img src="img/bellmanford2.png"  width="400"/></p>
+
+As we can the results from Dijkstra and Bellman-ford are identical. However, Bellman-ford costs much more time than Dijkstra.
+
 
 ### 3. Runtime compard between Dijkstra and Bellman-Ford
 We listed 10 examples to compare the runtime between Dijkstra and Bellman_Ford. 
@@ -169,21 +200,63 @@ As we can see, the runtime of Dijkstra is less than the Bellman_Ford.
 
 
 ## Step4: The traveling Trojan Problem:
-#### 1. Brute force
+### 1. Brute force
+In this section, we use Backtracking algorithm to solve Traveling Trojan Problem. 
 
-#### 2. Backtracking
-In this section, we implement Backtracking algorithm to solve Traveling Trojan Problem.
-**time complexity:** $O(n^2*n!)$
+- While implementing backtracking, we use swap function to swap the positions of two nodes in the vector to get different permutations. We also set a pointer to record the index of swapping node. 
+- When the pointer reaches the end of the vector, it means a route is found. Then we compare the route with current shortest path and do updates.
+
+**time complexity:** $O(n*n!)$. (n in Step4 represents the number of input nodes.)
+
+We use ``swap`` instead of ``find``. Backtraing is implemented O(n!) times totally. And every time we find a shorter path, we use ``push_back`` to add the vector to the result, which costs O(n). Therefore, the time complexity of is $O(n*n!)$.
+
+**Examples and Time taken by function:**
 
 
-#### 3. 2-opt
-**time complexity:** $O(n^3)$
+### 2. Backtracking
+The backtracking algorithm is similar to the previous brute force algorithm. 
+- We use a if statement to implement early backtracking. When the current distance is larger than the current minimum distance, we just skip the case and continue to the next permutation. Therefore, we can save the time.
+
+**time complexity:** $O(n*n!)$
+
+**Examples and Time taken by function:**
 
 
-#### 4. Genetic
+### 3. 2-opt
+In this section, we implement 2-opt algorithm to solve the Traveling Trojan Problem.
+- We use swapping mechanism here, reversing part of the nodes to reorder them and get a new permutation. 
+- Two for-loops are used to compare every possible possible route. If the new route is shorter, we continue to find the next route. While if it's longer, we will use the previous route to continue the loop.
+- Break the loops while there is no updates to the shortest route.
+
+**time complexity:** each while loop is $O(n^2)$. We break the loop while there is no updates to the shortest route length. 
+
+**Examples and Time taken by function:**
 
 
-#### 5. Runtime compard between Brute force, backtracking, 2-opt and Genetic
+### 4. 3-opt
+In this section, we implement 3-opt algorithm, which is a little more complicated than 2-opt.
+- We use three for loops to get three different nodes, whose index are i, j, k. i, j, k should satisfy i<j<k or j<k<i or k<i<j.
+- Using these three nodes as three breaking points to the route. The route is seperated to three parts. We can then find eight different routes by reversing and swaping the three parts.
+- If the length of the new route is shorter, we continue to find the new three nodes(index: i, j, j). Or we will check all the eight routes. When there is no update, we break the loops.
+
+**time complexity:** each while loop is $O(n^3)$. We break the loop while there is no updates to the shortest path length
+**Examples and Time taken by function:**
+
+
+### 5. Genetic
+In this section, we implement genetic algorithm. We take location_ids as genes and routes as chromosomes/populations. 
+- We set the population size as 7, so there will be 7 different routes in the populations.
+- Then we iterate several generations. For every generation, all the populations will be updated.
+- When each population is evolving, crossing over and mutating will take place. That is, swapping two different nodes of the route to get a new one. If the new route length is smaller, then the populatioin evolves. If not, there is still some probability that the population will update. 
+
+**time complexity:** O(g*p*n) g is the number of generations. p is the number of populations. n is the number of nodes in a route.
+
+We will update all the populations for several generations, which costs O(g*p). Each time we find a better route, we will use ``push_back`` to record the route, which costs O(n).
+
+**Examples and Time taken by function:**
+
+
+### 6. Runtime compard between Brute force, backtracking, 2-opt and Genetic
 We listed several examples to compare the runtime between Brute force, backtracking, 2-opt and Genetic.
 
 <p align="center"><img src="img/Student_table2.png"  width="400"/></p>
@@ -197,7 +270,7 @@ For this section, we use a square-shaped subgraph of the original graph by using
 
 First, we can get the left, right, upper and lower bounds from the ```std::vector<double> square```. Second, we go through the data's latitude and longtitude to see any points are in the square and we push back to vector which named points. We are using DFS for the cycle detection, we need to consider the parent in the cycle detection incase there are two nodes that is detected as a cycle. Then, we use a map with booling named visited, we set every point in points are false. And go through all the points using recursive DFS. Eventually, we plot the path and square out.
 
-Time complexity: 
+Time complexity: $O(m+n)$. m represents the number of edges in the map and n represents the number of nodes.
 
 Time spent: 
 
@@ -253,7 +326,7 @@ In this section, we are going to find the feasible route according to some depen
 - First, we initialize the edge map which contains the node and its neighbors and the mark map which is used to record whether the node has been marked.
 - Then we use DFS and mark map to recursivly access every node in ```locations```. Through using DFS, we will get the deepest node first. Therefore, to get the final result, we need to reverse the original result obtained by DFS.
 
-**Time complexity** If m>=n, it's O(m); if n>m, it O(n). m represents the number of edges(the length of ```dependencies```). n represents the number of nodes in ```locations```
+**Time complexity** If m>=n, it's O(m); if n>m, it's O(n). m represents the number of edges(the length of ```dependencies```). n represents the number of nodes in ```locations```.
 Obtaining the edge map costs O(m). The time complexity of DFS is O(n).
 
 **Examples and Time taken by function:**
@@ -265,7 +338,9 @@ For this section, we are going to find the k closest location with the name on t
 
 We are using heap for this section. First, we create a priority queue and set the return vector to be the k sizes. Then, we get the location name and the location's latitude and longitude. After that, we calculate the distance and put that in the queue. If the size of queue is equal to k size, then we compare the distance we calculated with the distance in the queue. If the distance we calculated is smaller than the distance in the queue. We replace it with the smallest one.
 
-Time complexity: 
+Time complexity: $O(n*logk)$ n is the number of nodes in the map, k is the input parameter.
+
+
 
 Time spent: 
 

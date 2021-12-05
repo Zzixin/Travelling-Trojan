@@ -130,8 +130,8 @@ void TrojanMap::PrintMenu() {
     std::string input2;
     getline(std::cin, input2);
     auto start = std::chrono::high_resolution_clock::now();
-    auto results = CalculateShortestPath_Dijkstra(input1, input2);
-    // auto results = CalculateShortestPath_Bellman_Ford(input1, input2);
+    //auto results = CalculateShortestPath_Dijkstra(input1, input2);
+    auto results = CalculateShortestPath_Bellman_Ford(input1, input2);
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     menu = "*************************Results******************************\n";
@@ -177,8 +177,8 @@ void TrojanMap::PrintMenu() {
     //auto results = TravellingTrojan(locations);
     //auto results = TravellingTrojan_bruteforce(locations);
     //auto results = TravellingTrojan_2opt(locations);
-    auto results = TravellingTrojan_Genetic(locations);
-    //auto results = TravellingTrojan_3opt(locations);
+    //auto results = TravellingTrojan_Genetic(locations);
+    auto results = TravellingTrojan_3opt(locations);
     
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
@@ -691,6 +691,7 @@ std::vector<std::string> TrojanMap::Autocomplete(std::string name){
   for (auto i :data){
     Node n = i.second; // unordered_map<string, Node> data
     std::string nname = n.name; // name of the location(node)
+    if (nname.size()==0){continue;}
     std::transform(nname.begin(), nname.end(), nname.begin(),[](unsigned char c){ return std::tolower(c); });
     
     //ta:7271 ch:6407
@@ -776,7 +777,7 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
   std::vector<std::string> path;
   std::priority_queue<std::pair<double, std::string>, std::vector<std::pair<double, std::string>>,
                       std::greater<std::pair<double, std::string>>> q; //use the priority queue
-  std::string start, end; // the id of location1 and location2
+  std::string start, end; // the id of location1 and location2. source node and destination node
   std::unordered_map<std::string, double> distance; //distance map of the nodes
   std::unordered_map<std::string, std::string> pre; //record the node and its predecessor
 
@@ -888,6 +889,7 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Bellman_Ford(
  * @param  {std::vector<std::string>} input : a list of locations needs to visit
  * @return {std::pair<double, std::vector<std::vector<std::string>>} : a pair of total distance and the all the progress to get final path
  */
+// using backtracking
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan(
                                     std::vector<std::string> &location_ids) {
   std::pair<double, std::vector<std::vector<std::string>>> results;
@@ -905,7 +907,6 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   return results;
 }
 
-//1006309
 void TrojanMap::backtrack(std::vector<std::string> &points, std::vector<std::vector<std::string>> &res, 
                           int current, double &cur_len, double &pathlen, std::vector<std::string> &optimal_path){
   //reference - lc46
@@ -962,7 +963,7 @@ void TrojanMap::backtrack(std::vector<std::string> &points, std::vector<std::vec
   }
 }
 */
-
+//brute force
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_bruteforce(
                                     std::vector<std::string> &location_ids) {
   std::pair<double, std::vector<std::vector<std::string>>> results;
@@ -1036,7 +1037,7 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   return results;
 }
 
-
+//aux function of 3-opt
 double TrojanMap::CalculateDistance_3opt(const std::string &a_id, const std::string &b_id){
   return sqrt(pow(data[a_id].lat-data[b_id].lat,2)+pow(data[a_id].lon-data[b_id].lon,2));
 }
@@ -1062,12 +1063,10 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   std::string start = location_ids[0];
   int move1, move2, move3;
   bool flag = 1;
-  int test=0;
 
-  while (test < 100){
+  while (flag){
     //first there for - loop, make x1<y1<z1 or y1<z1<x1 or z1<x1<y1
     flag = 0;
-    test+=1;
     for (int i=1; i<=N-1; i++){
       move1 = i;
       x1 = location_ids[i];
@@ -1128,6 +1127,7 @@ int TrojanMap::getindex(std::vector<std::string> &v, std::string s){
   }
 }
 
+//aux function of 3-opt
 void TrojanMap::move_3opt(std::vector<std::string> &location_ids, int move1, int move2, int move3, int opt3_case, 
                 std::string x1, std::string x2, std::string y1, std::string y2, std::string z1, std::string z2 ,int N){
   int x2_index, y1_index, z1_index, y2_index;
@@ -1197,6 +1197,7 @@ void TrojanMap::move_3opt(std::vector<std::string> &location_ids, int move1, int
   }
 }
 
+//aux function of 3-opt
 double TrojanMap::gain_from_3opt(std::string x1, std::string x2, std::string y1, std::string y2, 
                   std::string z1, std::string z2, int opt3_case){
   double del_length, add_length; //del_length<0; add_length>=0
@@ -1238,6 +1239,7 @@ double TrojanMap::gain_from_3opt(std::string x1, std::string x2, std::string y1,
 }
 
 
+// Genetic algorithm
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Genetic(
       std::vector<std::string> &location_ids){
   //reference - https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/
