@@ -174,11 +174,12 @@ void TrojanMap::PrintMenu() {
     PlotPoints(locations);
     std::cout << "Calculating ..." << std::endl;
     auto start = std::chrono::high_resolution_clock::now();
-    auto results = TravellingTrojan(locations);
-    // auto results = TravellingTrojan_bruteforce(locations);
+    //auto results = TravellingTrojan(locations);
+    //auto results = TravellingTrojan_bruteforce(locations);
     //auto results = TravellingTrojan_2opt(locations);
-    //auto results = TravellingTrojan_Genetic(locations);
-
+    auto results = TravellingTrojan_Genetic(locations);
+    //auto results = TravellingTrojan_3opt(locations);
+    
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     CreateAnimation(results.second);
@@ -1035,41 +1036,206 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   return results;
 }
 
-// std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_3opt(
-//       std::vector<std::string> &location_ids){
-//   // reference:https://stackoverflow.com/questions/28282958/3-opt-optimization-code-for-tsp/28287109  
-//   std::pair<double, std::vector<std::vector<std::string>>> results;
-//   location_ids.push_back(location_ids[0]);
-//   std::vector<std::vector<std::string>> res_vec; //all the path
-//   std::vector<std::string> optimal_path = location_ids;
-//   int len=location_ids.size();
-//   double current_dist = CalculatePathLength(location_ids);
-//   double pathlen = current_dist;
-  
-//   while (true){
-//     int flag = 0;
-//     for(int i=1;i<len-3;i++){
-//       for (int j=1; j<len-2; j++){
-//         for (int k=i+1; k<len-1; k++){
-//           std::reverse(location_ids.begin()+j, location_ids.begin()+k+1);
-//           current_dist = CalculatePathLength(location_ids);
-//           res_vec.push_back(location_ids);
-//           if (current_dist < pathlen){
-//             pathlen = current_dist;
-//             optimal_path = location_ids;
-//             flag = 1;
-//           }
-//           else{std::reverse(location_ids.begin()+i, location_ids.begin()+k+1);}
-//         }
-//       }
-//     }
-//     if (flag == 0){break;}
-//   }
 
-//   res_vec.push_back(optimal_path);
-//   results = std::make_pair(pathlen, res_vec);
-//   return results;
-// }
+double TrojanMap::CalculateDistance_3opt(const std::string &a_id, const std::string &b_id){
+  return sqrt(pow(data[a_id].lat-data[b_id].lat,2)+pow(data[a_id].lon-data[b_id].lon,2));
+}
+
+std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_3opt(
+      std::vector<std::string> &location_ids){
+  // reference1: http://tsp-basics.blogspot.com/2017/03/3-opt-move.html 
+  // reference2: http://tsp-basics.blogspot.com/2017/03/3-opt-iterative-general-idea.html
+
+  std::pair<double, std::vector<std::vector<std::string>>> results;
+  std::vector<std::vector<std::string>> res_vec; //all the path
+  if (location_ids.size() == 2){
+    location_ids.push_back(location_ids[0]);
+    results.second.push_back(location_ids);
+    results.first = CalculatePathLength(results.second[0]);
+  } 
+
+  int opt3_case = 0, N = location_ids.size();
+  // location_ids.push_back(location_ids[0]);
+  // double min_length = CalculatePathLength(location_ids);
+  double gain_length; //the minimal length of the path
+  std::string x1, x2, y1, y2, z1, z2;
+  std::string start = location_ids[0];
+  int move1, move2, move3;
+  bool flag = 1;
+  int test=0;
+
+  while (test < 100){
+    //first there for - loop, make x1<y1<z1 or y1<z1<x1 or z1<x1<y1
+    flag = 0;
+    test+=1;
+    for (int i=1; i<=N-1; i++){
+      move1 = i;
+      x1 = location_ids[i];
+      x2 = location_ids[(i+1) % N];
+
+      for (int j=1; j<= N-1; j++){
+        move2 = (move1+j) % N;
+        y1 = location_ids[move2];
+        y2 = location_ids[(move2+1)%N];
+
+        for (int k=j+1; k<=N-1; k++){
+          move3 = (move1+k) % N;
+          z1 = location_ids[move3];
+          z2 = location_ids[(move3+1)%N];
+
+          for (opt3_case=0; opt3_case<=7; opt3_case++){
+            gain_length = gain_from_3opt(x1, x2, y1, y2, z1, z2, opt3_case);
+            
+            if (gain_length > 1e-15){
+              move_3opt(location_ids, move1, move2, move3, opt3_case, x1, x2, y1, y2, z1, z2, N);
+              res_vec.push_back(location_ids);
+              res_vec[res_vec.size()-1].push_back(location_ids[0]);
+              flag = 1;
+              break;
+            }
+            
+          }
+          if (flag==1) {break;}
+        }
+        if (flag==1) {break;}
+      }
+      if (flag==1) {break;}
+    }
+  }
+
+  int count = 0;
+  for (auto i:location_ids){
+    if (i==start) {break;}
+    count ++;
+  }
+  
+  std::vector<std::string> final_result;
+  for (int i=count; i<count+N; i++){
+    final_result.push_back(location_ids[i%N]);
+  }
+
+  final_result.push_back(start);
+  res_vec.push_back(final_result);
+  results = std::make_pair(CalculatePathLength(final_result), res_vec);
+  return results;
+}
+
+int TrojanMap::getindex(std::vector<std::string> &v, std::string s){
+  for (int i=0; i<v.size(); i++){
+    if (v[i] == s){
+      return i;
+    }
+  }
+}
+
+void TrojanMap::move_3opt(std::vector<std::string> &location_ids, int move1, int move2, int move3, int opt3_case, 
+                std::string x1, std::string x2, std::string y1, std::string y2, std::string z1, std::string z2 ,int N){
+  int x2_index, y1_index, z1_index, y2_index;
+  switch (opt3_case)
+  {
+  case 0:
+    break;
+  case 1:
+    if ((move3+1)%N <= move1) {std::reverse(location_ids.begin()+(move3+1)%N, location_ids.begin()+move1+1);}
+    else {std::reverse(location_ids.begin()+(move1+1)%N, location_ids.begin()+(move3+1)%N);}
+    break;
+
+  case 2:
+    if ((move2+1)%N <= move3) {std::reverse(location_ids.begin()+(move2+1)%N, location_ids.begin()+move3+1);}
+    else {std::reverse(location_ids.begin()+(move3+1)%N, location_ids.begin()+(move2+1)%N);}
+    break;
+
+  case 3:
+    if ((move1+1)%N <= move2) {std::reverse(location_ids.begin()+(move1+1)%N, location_ids.begin()+move2+1);}
+    else {std::reverse(location_ids.begin()+(move2+1)%N, location_ids.begin()+(move1+1)%N);}
+    break;
+
+  case 4:
+    if ((move2+1)%N <= move3) {std::reverse(location_ids.begin()+(move2+1)%N, location_ids.begin()+move3+1);}
+    else {std::reverse(location_ids.begin()+(move3+1)%N, location_ids.begin()+(move2+1)%N);}
+
+    x2_index = getindex(location_ids, x2);
+    y1_index = getindex(location_ids, y1); //what should be reversed is the original index
+    if (x2_index <= y1_index) {std::reverse(location_ids.begin()+x2_index, location_ids.begin()+y1_index+1);}
+    else {std::reverse(location_ids.begin()+y1_index, location_ids.begin()+x2_index+1);}
+    break;
+
+  case 5:
+    if ((move3+1)%N <= move1) {std::reverse(location_ids.begin()+(move3+1)%N, location_ids.begin()+move1+1);}
+    else {std::reverse(location_ids.begin()+(move1+1)%N, location_ids.begin()+(move3+1)%N);}
+
+    x2_index = getindex(location_ids, x2);
+    y1_index = getindex(location_ids, y1);
+    if (x2_index <= y1_index) {std::reverse(location_ids.begin()+x2_index, location_ids.begin()+y1_index+1);}
+    else {std::reverse(location_ids.begin()+y1_index, location_ids.begin()+x2_index+1);}
+    break;
+
+  case 6:
+    if ((move3+1)%N <= move1) {std::reverse(location_ids.begin()+(move3+1)%N, location_ids.begin()+move1+1);}
+    else {std::reverse(location_ids.begin()+(move1+1)%N, location_ids.begin()+(move3+1)%N);}
+
+    y2_index = getindex(location_ids, y2);
+    z1_index = getindex(location_ids, z1);
+    if (y2_index <= z1_index) {std::reverse(location_ids.begin()+y2_index, location_ids.begin()+z1_index+1);}
+    else {std::reverse(location_ids.begin()+z1_index, location_ids.begin()+y2_index+1);}
+    break;
+
+  case 7:
+    if ((move3+1)%N <= move1) {std::reverse(location_ids.begin()+(move3+1)%N, location_ids.begin()+move1+1);}
+    else {std::reverse(location_ids.begin()+(move1+1)%N, location_ids.begin()+(move3+1)%N);}
+
+    x2_index = getindex(location_ids, x2);
+    y1_index = getindex(location_ids, y1);
+    if (x2_index <= y1_index) {std::reverse(location_ids.begin()+x2_index, location_ids.begin()+y1_index+1);}
+    else {std::reverse(location_ids.begin()+y1_index, location_ids.begin()+x2_index+1);}
+
+    y2_index = getindex(location_ids, y2);
+    z1_index = getindex(location_ids, z1);
+    if (y2_index <= z1_index) {std::reverse(location_ids.begin()+y2_index, location_ids.begin()+z1_index+1);}
+    else {std::reverse(location_ids.begin()+z1_index, location_ids.begin()+y2_index+1);}
+    break;
+  }
+}
+
+double TrojanMap::gain_from_3opt(std::string x1, std::string x2, std::string y1, std::string y2, 
+                  std::string z1, std::string z2, int opt3_case){
+  double del_length, add_length; //del_length<0; add_length>=0
+
+  switch (opt3_case)
+  {
+  case 0:
+    return 0;
+  case 1:
+    del_length = CalculateDistance_3opt(x1, x2) + CalculateDistance_3opt(z1, z2);
+    add_length = CalculateDistance_3opt(x1, z1) + CalculateDistance_3opt(x2, z2);
+    break;
+  case 2:
+    del_length = CalculateDistance_3opt(y1, y2) + CalculateDistance_3opt(z1, z2);
+    add_length = CalculateDistance_3opt(y1, z1) + CalculateDistance_3opt(y2, z2);
+    break;
+  case 3:
+    del_length = CalculateDistance_3opt(x1, x2) + CalculateDistance_3opt(y1, y2);
+    add_length = CalculateDistance_3opt(x1, y1) + CalculateDistance_3opt(x2, y2);
+    break;
+  case 4:
+    add_length = CalculateDistance_3opt(x1,y1) + CalculateDistance_3opt(x2,z1) + CalculateDistance_3opt(y2,z2);
+    del_length = CalculateDistance_3opt(x1,x2) + CalculateDistance_3opt(y1,y2) + CalculateDistance_3opt(z1,z2);
+    break;
+  case 5:
+    add_length = CalculateDistance_3opt(x1,z1) + CalculateDistance_3opt(y2,x2) + CalculateDistance_3opt(y1,z2);
+    del_length = CalculateDistance_3opt(x1,x2) + CalculateDistance_3opt(y1,y2) + CalculateDistance_3opt(z1,z2);
+    break;
+  case 6:
+    add_length = CalculateDistance_3opt(x1,y2) + CalculateDistance_3opt(z1,y1) + CalculateDistance_3opt(x2,z2);
+    del_length = CalculateDistance_3opt(x1,x2) + CalculateDistance_3opt(y1,y2) + CalculateDistance_3opt(z1,z2);
+    break;
+  case 7:
+    add_length = CalculateDistance_3opt(x1,y2) + CalculateDistance_3opt(z1,x2) + CalculateDistance_3opt(y1,z2);
+    del_length = CalculateDistance_3opt(x1,x2) + CalculateDistance_3opt(y1,y2) + CalculateDistance_3opt(z1,z2);
+    break;
+  }
+  return (del_length-add_length); //being positive indicates that the path can still be improved
+}
 
 
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Genetic(
@@ -1082,7 +1248,7 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
     results.second.push_back(location_ids);
     results.first = CalculatePathLength(results.second[0]);
   } 
-  int population_size = 6, len = location_ids.size()+1; //initialize 10 permutations of cities
+  int population_size = 7, len = location_ids.size()+1; //initialize 10 permutations of cities
   std::vector<std::vector<std::string>> population; //record permutations
   std::vector<std::string> optimal_path;
   double min_path_len = INT_MAX;
@@ -1094,7 +1260,7 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     shuffle (location_ids.begin()+1, location_ids.end()-1, std::default_random_engine(seed));
     population.push_back(location_ids);
-    res_vec.push_back(location_ids);
+    //res_vec.push_back(location_ids);
     double d = CalculatePathLength(location_ids);
     // initialize the optimal path and its length
     if (d< min_path_len){
@@ -1105,7 +1271,7 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
 
   int temperature = 10000, gen=0; //genernations
 
-  while (temperature > 1000 && gen<5){
+  while (temperature > 500 && gen<7){
     std::vector<std::string> temp_len;
 
     // all populations need to be updated
@@ -1126,10 +1292,11 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
         double dis_new = CalculatePathLength(temp_len);
         if (dis_origin > dis_new){
           population[i] = temp_len;
-          res_vec.push_back(temp_len);
+          //res_vec.push_back(temp_len);
           if (dis_new < min_path_len) {
             min_path_len = dis_new;
             optimal_path = temp_len;
+            res_vec.push_back(temp_len);
           }
           break;
         }

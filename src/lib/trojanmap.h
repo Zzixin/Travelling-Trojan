@@ -7,6 +7,7 @@
 #include <map>
 #include <vector>
 #include <unordered_map>
+#include <math.h>
 // A Node is the location of one point in the map.
 class Node {
   public:
@@ -128,14 +129,24 @@ class TrojanMap {
   // void backtrack(std::vector<std::string> &points, std::vector<std::vector<std::string>> &res, 
   //                        double &pathlen, std::vector<std::string> &optimal_path, std::vector<std::string> &current_path);
 
+
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_2opt(
       std::vector<std::string> &location_ids);
-    
-//   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_3opt(
-//       std::vector<std::string> &location_ids);
+
+
+  std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_3opt(
+      std::vector<std::string> &location_ids);
+  double gain_from_3opt(std::string x1, std::string x2, std::string y1, std::string y2, 
+                  std::string z1, std::string z2, int opt3_case);
+  void move_3opt(std::vector<std::string> &location_ids, int move1, int move2, int move3, int opt3_case, 
+                std::string x1, std::string x2, std::string y1, std::string y2, std::string z1, std::string z2 ,int N);
+  double CalculateDistance_3opt(const std::string &a_id, const std::string &b_id);
+  int getindex(std::vector<std::string> &v, std::string s);
+
 
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_Genetic(
       std::vector<std::string> &location_ids);
+
 
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_bruteforce(
                                     std::vector<std::string> &location_ids);
