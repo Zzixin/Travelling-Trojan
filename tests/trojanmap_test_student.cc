@@ -111,7 +111,7 @@ TEST(TrojanMapTest, CalculateShortestPath_Dijkstra) {
   EXPECT_EQ(path, gt);
 }
 
-// Test Step3: CalculateShortestPath_Dijkstra function 2
+// Test Step3: CalculateShortestPath_Bellman_Ford function 2
 TEST(TrojanMapTest, CalculateShortestPath_Dijkstra2) {
   TrojanMap m;
   m.CreateGraphFromCSVFile();
