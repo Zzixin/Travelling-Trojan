@@ -2,6 +2,8 @@
 
 ## Group members: Zixin Zhang, Zijian Ye
 
+## Presentation video link: https://youtu.be/JyVr2JuwS1s
+
 ## Step1: Autocomplete the location name：
 For this function, we are going to conside the names of nodes as the locations. In the input, we typed in the name prefix of the location, and the output will give us the partial name of the prefix we typed in. Besides, we need to treat the uppercase and lowercase as the same character.
 
