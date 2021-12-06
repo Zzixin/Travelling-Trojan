@@ -270,3 +270,5 @@ TEST(TrojanMapTest, FindKClosestPoints) {
   "6206425701", "5231970321"};
   EXPECT_EQ(result3, gt3);
 }
+
+

@@ -256,7 +256,7 @@ We will update all the populations for several generations, which costs O(g*p). 
 **Examples and Time taken by function:**
 
 
-### 6. Runtime compard between Brute force, backtracking, 2-opt and Genetic
+### 6. Runtime compard between Brute force, backtracking, 2-opt, 3-opt and Genetic
 We listed several examples to compare the runtime between Brute force, backtracking, 2-opt and Genetic.
 
 <p align="center"><img src="img/Student_table2.png"  width="400"/></p>
@@ -393,3 +393,5 @@ Find K Closest Points Results:
 **************************************************************
 Time taken by function: 4952 microseconds
 ```
+
+## Discussion, conclusion and lessons learned
