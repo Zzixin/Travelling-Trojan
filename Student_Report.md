@@ -332,8 +332,51 @@ In this section, we are going to find the feasible route according to some depen
 Obtaining the edge map costs O(m). The time complexity of DFS is O(n).
 
 **Examples and Time taken by function:**
+Example 1:
+```shell
+Input: 
+location_names = {"University Park", "Troy View Swimming Pool","CVS"}
+dependencies = {{"University Park","Troy View Swimming Pool"}, {"Troy View Swimming Pool","CVS"}, {"University Park","CVS"}}
+```
 
 
+
+
+
+
+Example 2:
+```shell
+Input: 
+location_names = {"Saint Marks Lutheran Church", "Trinity Elementary School","Ralphs","Crosswalk1","Saint James Park","Vermont Elementary School","Community of Christ","Los Angeles","Divine Providence Convent","Parking Center"}
+dependencies = {{"Saint Marks Lutheran Church","Trinity Elementary School"}, {"Saint Marks Lutheran Church","Ralphs"}, {"Saint Marks Lutheran Church","Crosswalk1"},{"Saint Marks Lutheran Church","Saint James Park"},{"Saint Marks Lutheran Church","Vermont Elementary School"},{"Saint Marks Lutheran Church","Community of Christ"},{"Saint Marks Lutheran Church","Los Angeles"},{"Saint Marks Lutheran Church","Divine Providence Convent"},{"Saint Marks Lutheran Church","Parking Center"},{"Trinity Elementary School","Ralphs"}, {"Trinity Elementary School","Crosswalk1"}, {"Trinity Elementary School","Saint James Park"}, {"Trinity Elementary School","Vermont Elementary School"}, {"Trinity Elementary School","Community of Christ"}, {"Trinity Elementary School","Los Angeles"}, {"Trinity Elementary School","Divine Providence Convent"}, {"Trinity Elementary School","Parking Center"},{"Ralphs","Crosswalk1"},{"Ralphs","Saint James Park"},{"Ralphs","Vermont Elementary School"},{"Ralphs","Community of Christ"},{"Ralphs","Los Angeles"},{"Ralphs","Divine Providence Convent"},{"Ralphs","Parking Center"},{"Crosswalk1","Saint James Park"},{"Crosswalk1","Vermont Elementary School"},{"Crosswalk1","Community of Christ"},{"Crosswalk1","Los Angeles"},{"Crosswalk1","Divine Providence Convent"},{"Crosswalk1","Parking Center"},{"Saint James Park","Vermont Elementary School"},{"Saint James Park","Community of Christ"},{"Saint James Park","Los Angeles"},{"Saint James Park","Divine Providence Convent"},{"Saint James Park","Parking Center"},{"Vermont Elementary School","Community of Christ"},{"Vermont Elementary School","Los Angeles"},{"Vermont Elementary School","Divine Providence Convent"},{"Vermont Elementary School","Parking Center"},{"Community of Christ","Los Angeles"},{"Community of Christ","Divine Providence Convent"},{"Community of Christ","Parking Center"},{"Los Angeles","Divine Providence Convent"},{"Los Angeles","Parking Center"},{"Divine Providence Convent","Parking Center"}}
+```
+
+```shell
+**************************************************************
+* 6. Topological Sort                                         
+**************************************************************
+
+Please input the locations filename:/Users/yzj/EE538/final-project-ZijianYe/input/topologicalsort_locations.csv
+Please input the dependencies filename:/Users/yzj/EE538/final-project-ZijianYe/input/topologicalsort_dependencies.csv
+*************************Results******************************
+Topological Sorting Results:
+Saint Marks Lutheran Church
+Trinity Elementary School
+Ralphs
+Crosswalk1
+Saint James Park
+Vermont Elementary School
+Community of Christ
+Los Angeles
+Divine Providence Convent
+Parking Center
+**************************************************************
+Time taken by function: 183 microseconds
+```
+
+<p align="center"><img src="img/Student_topo2.png"  width="400"/></p>
+
+As you can see, with the grows of input size, the runtime is not increase too much.
 
 ## Step7: Find K closest points:
 For this section, we are going to find the k closest location with the name on the map and return a vector of string ids.
