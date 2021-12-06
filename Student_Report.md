@@ -272,6 +272,8 @@ First, we can get the left, right, upper and lower bounds from the ```std::vecto
 
 Time complexity: $O(m+n)$. m represents the number of edges in the map and n represents the number of nodes.
 
+Every nodes will be vistied only once, and for each node we only check its neighbor once. So, the maximum of conputations is only number of nodes and number of edges.
+
 Time spent: 
 
 Example 1:
