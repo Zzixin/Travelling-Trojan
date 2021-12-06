@@ -395,3 +395,11 @@ Time taken by function: 4952 microseconds
 ```
 
 ## Discussion, conclusion and lessons learned
+First, we are now familiar with the C++. We understand code to execution including tokenization, compiling and linking. And we can step-wise debug to analysis how to modify it. Besides, we know how to determine the time complexity and it can help us to know which way goes faster.
+
+Second, we learned a lot of data structure such as vector, map, lists, graph, tree and so on. We did a lot of practice in the homework and went through some examples in the lecture. We are familiar with those data structure and if we have a question, we know which one we need to use. 
+
+Third, we also learned a lot of algorithms such as sorting, backtracking and dynamic programming. We know how to use it and implement it into a practical problems. But we think we still need to do more questions to familar with it.
+
+last but not the least, we both think professor really did a great job that let us understand all the things deeply. Appreciated and thanks.
+
