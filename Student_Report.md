@@ -130,7 +130,7 @@ Please input the destination:ChickfilA
 The distance of the path is:1.53852 miles
 **************************************************************
 Time taken by function: 21256 microseconds
-```
+ ```
 <p align="center"><img src="img/Student_dijkstra1.png"  width="400"/></p>
 
 ```shell
@@ -192,27 +192,62 @@ As we can the results from Dijkstra and Bellman-ford are identical. However, Bel
 
 
 ### 3. Runtime compard between Dijkstra and Bellman-Ford
-We listed 10 examples to compare the runtime between Dijkstra and Bellman_Ford. 
+We listed 10 examples to compare the runtime between Dijkstra and Bellman_Ford. There are totally 2237 nodes in the map. We implement the two algorithms over these 2237 nodes.
 
-<p align="center"><img src="img/Student_table1.png"  width="400"/></p>
+Dijkstra choose the nodes with the minimum distance to the source that hasn't been visited, and do the edge relaxation process on all of its outgoing edges. While Bellman-Ford just do edge relaxation for all edges in the map and do this n-1 times. n is the number of nodes. Bellman-Ford performs check on all the nodes, while Dijkstra just check the one with the shortest distance. Therefore, when there is no negative edges, Dijkstra performs better than Bellman-Ford.
 
-<p align="center"><img src="img/Student_comparedandb.png"  width="400"/></p>
+<p align="center"><img src="img/Student_table1.png"  width="600"/></p>
 
-As we can see, the runtime of Dijkstra is less than the Bellman_Ford.
+<p align="center"><img src="img/Student_comparedandb.png"  width="600"/></p>
+
+As we can see from the picture, the runtime of Dijkstra is much less than the one of Bellman_Ford.
 
 
 ## Step4: The traveling Trojan Problem:
 ### 1. Brute force
-In this section, we use Backtracking algorithm to solve Traveling Trojan Problem. 
+In this section, we use Backtracking algorithm to solve Traveling Trojan Problem.
 
 - While implementing backtracking, we use swap function to swap the positions of two nodes in the vector to get different permutations. We also set a pointer to record the index of swapping node. 
 - When the pointer reaches the end of the vector, it means a route is found. Then we compare the route with current shortest path and do updates.
 
-**time complexity:** $O(n*n!)$. (n in Step4 represents the number of input nodes.)
+**Time complexity:** $O(n*n!)$. (n in Step4 represents the number of input nodes.)
 
 We use ``swap`` instead of ``find``. Backtraing is implemented O(n!) times totally. And every time we find a shorter path, we use ``push_back`` to add the vector to the result, which costs O(n). Therefore, the time complexity of is $O(n*n!)$.
 
 **Examples and Time taken by function:**
+- 8 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:8
+**************************************************************
+The distance of the path is:4.4655 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 64062 microseconds
+```
+<p align="center"><img src="img/4bruteforce_8.gif" alt="bruteforce 10points" width="400"/></p>
+<p align="center"><img src="img/4bruteforce_8.png"  width="400"/></p>
+
+
+- 10 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:10
+**************************************************************
+The distance of the path is:4.39643 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 5257472 microseconds
+```
+<p align="center"><img src="img/4bruteforce_10.gif" alt="bruteforce 10points" width="400"/></p>
+<p align="center"><img src="img/4bruteforce_10.png"  width="400"/></p>
+
 
 
 ### 2. Backtracking
@@ -222,6 +257,40 @@ The backtracking algorithm is similar to the previous brute force algorithm.
 **time complexity:** $O(n*n!)$
 
 **Examples and Time taken by function:**
+- 10 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:10
+**************************************************************
+The distance of the path is:3.67017 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 264592 microseconds
+```
+
+<p align="center"><img src="img/4backtrack_10.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/4backtrack_10.png" width="400"/></p>
+
+- 12 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:12
+**************************************************************
+The distance of the path is:4.90325 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 6491531 microseconds
+```
+
+<p align="center"><img src="img/4backtrack_12.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/4backtrack_12.png" width="400"/></p>
+
 
 
 ### 3. 2-opt
@@ -233,6 +302,101 @@ In this section, we implement 2-opt algorithm to solve the Traveling Trojan Prob
 **time complexity:** each while loop is $O(n^2)$. We break the loop while there is no updates to the shortest route length. 
 
 **Examples and Time taken by function:**
+- 10 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:10
+**************************************************************
+The distance of the path is:5.48317 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 1715 microseconds
+```
+<p align="center"><img src="img/42opt_10.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/42opt_10.png" width="400"/></p>
+
+- 15 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:15
+**************************************************************
+The distance of the path is:5.1278 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 11772 microseconds
+```
+<p align="center"><img src="img/42opt_15.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/42opt_15.png" width="400"/></p>
+
+- 20 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:20
+**************************************************************
+The distance of the path is:7.02435 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 24199 microseconds
+```
+<p align="center"><img src="img/42opt_20.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/42opt_20.png" width="400"/></p>
+
+- 30 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:30
+**************************************************************
+The distance of the path is:5.99172 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 90722 microseconds
+```
+<p align="center"><img src="img/42opt_30.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/42opt_30.png" width="400"/></p>
+
+- 40 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:40
+**************************************************************
+The distance of the path is:8.92963 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 198653 microseconds
+```
+<p align="center"><img src="img/42opt_40.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/42opt_40.png" width="400"/></p>
+
+- 50 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:50
+**************************************************************
+The distance of the path is:9.42343 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 351336 microseconds
+```
+<p align="center"><img src="img/42opt_50.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/42opt_50.png" width="400"/></p>
 
 
 ### 4. 3-opt
@@ -241,8 +405,89 @@ In this section, we implement 3-opt algorithm, which is a little more complicate
 - Using these three nodes as three breaking points to the route. The route is seperated to three parts. We can then find eight different routes by reversing and swaping the three parts.
 - If the length of the new route is shorter, we continue to find the new three nodes(index: i, j, j). Or we will check all the eight routes. When there is no update, we break the loops.
 
-**time complexity:** each while loop is $O(n^3)$. We break the loop while there is no updates to the shortest path length
+**Time complexity:** each while loop is $O(n^3)$. We break the loop while there is no updates to the shortest path length
 **Examples and Time taken by function:**
+- 10 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:10
+**************************************************************
+The distance of the path is:4.03024 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 15454 microseconds
+```
+<p align="center"><img src="img/43opt_10.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/43opt_10.png" alt="TSP videos" width="400"/></p>
+
+- 20 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:20
+**************************************************************
+The distance of the path is:6.43358 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 167345 microseconds
+```
+<p align="center"><img src="img/43opt_20.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/43opt_20.png" alt="TSP videos" width="400"/></p>
+
+
+- 30 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:30
+**************************************************************
+The distance of the path is:6.76967 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 623711 microseconds
+```
+<p align="center"><img src="img/43opt_30.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/43opt_30.png" alt="TSP videos" width="400"/></p>
+
+
+- 40 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:40
+**************************************************************
+The distance of the path is:8.2517 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 2627756 microseconds
+```
+<p align="center"><img src="img/43opt_40.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/43opt_40.png" alt="TSP videos" width="400"/></p>
+
+- 50 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:50
+**************************************************************
+The distance of the path is:9.07136 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 5308862 microseconds
+```
+<p align="center"><img src="img/43opt_50.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/43opt_50.png" alt="TSP videos" width="400"/></p>
 
 
 ### 5. Genetic
@@ -256,6 +501,54 @@ In this section, we implement genetic algorithm. We take location_ids as genes a
 We will update all the populations for several generations, which costs O(g*p). Each time we find a better route, we will use ``push_back`` to record the route, which costs O(n).
 
 **Examples and Time taken by function:**
+- 8 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:8
+**************************************************************
+The distance of the path is:4.48169 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 1707 microseconds
+```
+<p align="center"><img src="img/4ga_8.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/4ga_8.png" alt="TSP videos" width="400"/></p>
+
+- 10 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:10
+**************************************************************
+The distance of the path is:4.48169 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 1707 microseconds
+```
+<p align="center"><img src="img/4ga_10.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/4ga_10.png" alt="TSP videos" width="400"/></p>
+
+- 12 places
+```shell
+**************************************************************
+* 4. Traveling salesman problem                              
+**************************************************************
+
+Please input the number of the places:12
+**************************************************************
+The distance of the path is:4.48169 miles
+**************************************************************
+You could find your animation at src/lib/output.avi.          
+Time taken by function: 1707 microseconds
+```
+<p align="center"><img src="img/4ga_12.gif" alt="TSP videos" width="400"/></p>
+<p align="center"><img src="img/4ga_12.png" alt="TSP videos" width="400"/></p>
+
 
 
 ### 6. Runtime compard between Brute force, backtracking, 2-opt, 3-opt and Genetic
@@ -266,6 +559,11 @@ We listed several examples to compare the runtime between Brute force, backtrack
 <p align="center"><img src="img/Student_compare.png"  width="400"/></p>
 
 As we can see, the runtime of brute force is much higher than others when the number of nodes get larger.
+
+In this experiment, I run several cases using the above algorithms.
+- For Bruteforce and Backtracking these kinds of exhaustive search, the results are definitely right, but it takes too long for the algorithms to run. When the number of places is bigger than 15, it will take more than 5 minutes. The exhaustive search is not practical for too many nodes.
+- For 2-opt and 3-opt, I tried up to 50 inputs, and the results of the two algorithms are all optimal. They also don't need too much time to run. Therefore, when there are more than 15 inputs, the heuristic implementation is preferred.
+- For genetic algorithm, although the running time is short, it cannot get the optimal result when the number of input is bigger than 12.
 
 ## Step5: Cycle detection:
 For this section, we use a square-shaped subgraph of the original graph by using four corrdinates. And it follows the order of left, right, upper and lower bounds. We are tring to determine if there is a cycle path in that subgraph.
@@ -413,6 +711,7 @@ Find K Closest Points Results:
 **************************************************************
 Time taken by function: 6171 microseconds
 ```
+<p align="center"><img src="img/7_2.png"  width="400"/></p>
 
 ```shell
 **************************************************************
@@ -440,6 +739,7 @@ Find K Closest Points Results:
 **************************************************************
 Time taken by function: 4952 microseconds
 ```
+<p align="center"><img src="img/7_1.png"  width="400"/></p>
 
 ## Discussion, conclusion and lessons learned
 First, we are now familiar with the C++. We understand code to execution including tokenization, compiling and linking. And we can step-wise debug to analysis how to modify it. Besides, we know how to determine the time complexity and it can help us to know which way goes faster.
