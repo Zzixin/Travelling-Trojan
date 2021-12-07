@@ -174,11 +174,11 @@ void TrojanMap::PrintMenu() {
     PlotPoints(locations);
     std::cout << "Calculating ..." << std::endl;
     auto start = std::chrono::high_resolution_clock::now();
-    auto results = TravellingTrojan(locations);
+    // auto results = TravellingTrojan(locations);
     //auto results = TravellingTrojan_bruteforce(locations);
     //auto results = TravellingTrojan_2opt(locations);
     // auto results = TravellingTrojan_Genetic(locations);
-    // auto results = TravellingTrojan_3opt(locations);
+    auto results = TravellingTrojan_3opt(locations);
     
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);

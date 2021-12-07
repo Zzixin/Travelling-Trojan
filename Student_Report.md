@@ -265,10 +265,10 @@ The backtracking algorithm is similar to the previous brute force algorithm.
 
 Please input the number of the places:10
 **************************************************************
-The distance of the path is:3.67017 miles
+The distance of the path is:4.71575 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 264592 microseconds
+Time taken by function: 347076 microseconds
 ```
 
 <p align="center"><img src="img/4backtrack_10.gif" alt="TSP videos" width="400"/></p>
@@ -282,10 +282,10 @@ Time taken by function: 264592 microseconds
 
 Please input the number of the places:12
 **************************************************************
-The distance of the path is:4.90325 miles
+The distance of the path is:4.21632 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 6491531 microseconds
+Time taken by function: 4221427 microseconds
 ```
 
 <p align="center"><img src="img/4backtrack_12.gif" alt="TSP videos" width="400"/></p>
@@ -415,10 +415,10 @@ In this section, we implement 3-opt algorithm, which is a little more complicate
 
 Please input the number of the places:10
 **************************************************************
-The distance of the path is:4.03024 miles
+The distance of the path is:3.91414 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 15454 microseconds
+Time taken by function: 24456 microseconds
 ```
 <p align="center"><img src="img/43opt_10.gif" alt="TSP videos" width="400"/></p>
 <p align="center"><img src="img/43opt_10.png" alt="TSP videos" width="400"/></p>
@@ -431,10 +431,10 @@ Time taken by function: 15454 microseconds
 
 Please input the number of the places:20
 **************************************************************
-The distance of the path is:6.43358 miles
+The distance of the path is:6.34402 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 167345 microseconds
+Time taken by function: 286006 microseconds
 ```
 <p align="center"><img src="img/43opt_20.gif" alt="TSP videos" width="400"/></p>
 <p align="center"><img src="img/43opt_20.png" alt="TSP videos" width="400"/></p>
@@ -448,10 +448,10 @@ Time taken by function: 167345 microseconds
 
 Please input the number of the places:30
 **************************************************************
-The distance of the path is:6.76967 miles
+The distance of the path is:7.61939 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 623711 microseconds
+Time taken by function: 891818 microseconds
 ```
 <p align="center"><img src="img/43opt_30.gif" alt="TSP videos" width="400"/></p>
 <p align="center"><img src="img/43opt_30.png" alt="TSP videos" width="400"/></p>
@@ -465,10 +465,10 @@ Time taken by function: 623711 microseconds
 
 Please input the number of the places:40
 **************************************************************
-The distance of the path is:8.2517 miles
+The distance of the path is:9.53303 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 2627756 microseconds
+Time taken by function: 2111038 microseconds
 ```
 <p align="center"><img src="img/43opt_40.gif" alt="TSP videos" width="400"/></p>
 <p align="center"><img src="img/43opt_40.png" alt="TSP videos" width="400"/></p>
@@ -481,10 +481,10 @@ Time taken by function: 2627756 microseconds
 
 Please input the number of the places:50
 **************************************************************
-The distance of the path is:9.07136 miles
+The distance of the path is:9.86856 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 5308862 microseconds
+Time taken by function: 7833522 microseconds
 ```
 <p align="center"><img src="img/43opt_50.gif" alt="TSP videos" width="400"/></p>
 <p align="center"><img src="img/43opt_50.png" alt="TSP videos" width="400"/></p>
