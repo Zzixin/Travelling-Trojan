@@ -561,13 +561,13 @@ Time taken by function: 2194 microseconds
 ### 6. Runtime compard between Brute force, backtracking, 2-opt, 3-opt and Genetic
 We listed several examples to compare the runtime between Brute force, backtracking, 2-opt and Genetic.
 
-<p align="center"><img src="img/Student_table2.png"  width="500"/></p>
+<p align="center"><img src="img/Student_table2.png"  width="600"/></p>
 
-<p align="center"><img src="img/Student_compare.png"  width="500"/></p>
+<p align="center"><img src="img/Student_compare.png"  width="600"/></p>
 
-<p align="center"><img src="img/Student_table3.png"  width="500"/></p>
+<p align="center"><img src="img/Student_table3.png"  width="600"/></p>
 
-<p align="center"><img src="img/Student_2and3.png"  width="500"/></p>
+<p align="center"><img src="img/Student_2and3.png"  width="600"/></p>
 
 As we can see, the runtime of brute force is much higher than others when the number of nodes get larger.
 
