@@ -650,6 +650,23 @@ location_names = {"University Park", "Troy View Swimming Pool","CVS"}
 dependencies = {{"University Park","Troy View Swimming Pool"}, {"Troy View Swimming Pool","CVS"}, {"University Park","CVS"}}
 ```
 
+```shell
+**************************************************************
+* 6. Topological Sort                                         
+**************************************************************
+Please input the locations filename:/Users/yzj/EE538/final-project-ZijianYe/input/topologicalsort_locations.csv
+Please input the dependencies filename:/Users/yzj/EE538/final-project-ZijianYe/input/topologicalsort_dependencies.csv
+*************************Results******************************
+Topological Sorting Results:
+University Park
+Troy View Swimming Pool
+CVS
+**************************************************************
+Time taken by function: 56 microseconds
+```
+
+<p align="center"><img src="img/Student_topo1.png"  width="400"/></p>
+
 Example 2:
 ```shell
 Input: 
