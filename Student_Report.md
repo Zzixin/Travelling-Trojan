@@ -228,8 +228,10 @@ The distance of the path is:4.13595 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 68035 microseconds
 ```
-<p align="center"><img src="img/4bruteforce_8.gif" alt="bruteforce 10points" width="400"/></p>
-<p align="center"><img src="img/4bruteforce_8.png"  width="400"/></p>
+<p align="center">
+  <img src="img/4bruteforce_8.gif" width="400" alt="bruteforce_8gif"/>
+  <img src="img/4bruteforce_8.png" width="400" alt="bruteforce_8"/> 
+</p>
 
 
 - 10 places
@@ -245,8 +247,10 @@ The distance of the path is:4.44844 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 5852684 microseconds
 ```
-<p align="center"><img src="img/4bruteforce_10.gif" alt="bruteforce 10points" width="400"/></p>
-<p align="center"><img src="img/4bruteforce_10.png"  width="400"/></p>
+<p align="center">
+  <img src="img/4bruteforce_10.gif" width="400" alt="bruteforce_10gif"/>
+  <img src="img/4bruteforce_10.png" width="400" alt="bruteforce_10"/> 
+</p>
 
 
 
@@ -270,9 +274,10 @@ The distance of the path is:4.71575 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 347076 microseconds
 ```
-
-<p align="center"><img src="img/4backtrack_10.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/4backtrack_10.png" width="400"/></p>
+<p align="center">
+  <img src="img/4backtrack_10.gif" width="400" alt="4backtrack_10gif"/>
+  <img src="img/4backtrack_10.png" width="400" alt="4backtrack_10"/> 
+</p>
 
 - 12 places
 ```shell
@@ -287,10 +292,10 @@ The distance of the path is:4.21632 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 4221427 microseconds
 ```
-
-<p align="center"><img src="img/4backtrack_12.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/4backtrack_12.png" width="400"/></p>
-
+<p align="center">
+  <img src="img/4backtrack_12.gif" width="400" alt="4backtrack_12gif"/>
+  <img src="img/4backtrack_12.png" width="400" alt="4backtrack_12"/> 
+</p>
 
 
 ### 3. 2-opt
@@ -315,8 +320,11 @@ The distance of the path is:4.65398 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 1713 microseconds
 ```
-<p align="center"><img src="img/42opt_10.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/42opt_10.png" width="400"/></p>
+<p align="center">
+  <img src="img/42opt_10.gif" width="400" alt="42opt_10gif"/>
+  <img src="img/42opt_10.png" width="400" alt="42opt_10"/> 
+</p>
+
 
 - 20 places
 ```shell
@@ -331,8 +339,11 @@ The distance of the path is:6.67446 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 16287 microseconds
 ```
-<p align="center"><img src="img/42opt_20.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/42opt_20.png" width="400"/></p>
+<p align="center">
+  <img src="img/42opt_20.gif" width="400" alt="42opt_20gif"/>
+  <img src="img/42opt_20.png" width="400" alt="42opt_20"/> 
+</p>
+
 
 - 30 places
 ```shell
@@ -347,8 +358,11 @@ The distance of the path is:5.85451 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 25583 microseconds
 ```
-<p align="center"><img src="img/42opt_30.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/42opt_30.png" width="400"/></p>
+<p align="center">
+  <img src="img/42opt_30.gif" width="400" alt="42opt_30gif"/>
+  <img src="img/42opt_30.png" width="400" alt="42opt_30"/> 
+</p>
+
 
 - 40 places
 ```shell
@@ -363,8 +377,12 @@ The distance of the path is:9.81059 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 146846 microseconds
 ```
-<p align="center"><img src="img/42opt_40.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/42opt_40.png" width="400"/></p>
+<p align="center">
+  <img src="img/42opt_40.gif" width="400" alt="42opt_40gif"/>
+  <img src="img/42opt_40.png" width="400" alt="42opt_40"/> 
+</p>
+
+
 
 - 50 places
 ```shell
@@ -379,8 +397,11 @@ The distance of the path is:9.24729 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 370281 microseconds
 ```
-<p align="center"><img src="img/42opt_50.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/42opt_50.png" width="400"/></p>
+<p align="center">
+  <img src="img/42opt_50.gif" width="400" alt="42opt_50gif"/>
+  <img src="img/42opt_50.png" width="400" alt="42opt_50"/> 
+</p>
+
 
 
 ### 4. 3-opt
@@ -404,8 +425,11 @@ The distance of the path is:3.91414 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 24456 microseconds
 ```
-<p align="center"><img src="img/43opt_10.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/43opt_10.png" alt="TSP videos" width="400"/></p>
+<p align="center">
+  <img src="img/43opt_10.gif" width="400" alt="43opt_10gif"/>
+  <img src="img/43opt_10.png" width="400" alt="43opt_10"/> 
+</p>
+
 
 - 20 places
 ```shell
@@ -420,8 +444,11 @@ The distance of the path is:6.34402 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 286006 microseconds
 ```
-<p align="center"><img src="img/43opt_20.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/43opt_20.png" alt="TSP videos" width="400"/></p>
+<p align="center">
+  <img src="img/43opt_20.gif" width="400" alt="43opt_20gif"/>
+  <img src="img/43opt_20.png" width="400" alt="43opt_20"/> 
+</p>
+
 
 
 - 30 places
@@ -437,8 +464,10 @@ The distance of the path is:7.61939 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 891818 microseconds
 ```
-<p align="center"><img src="img/43opt_30.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/43opt_30.png" alt="TSP videos" width="400"/></p>
+<p align="center">
+  <img src="img/43opt_30.gif" width="400" alt="43opt_30gif"/>
+  <img src="img/43opt_30.png" width="400" alt="43opt_30"/> 
+</p>
 
 
 - 40 places
@@ -454,8 +483,11 @@ The distance of the path is:9.53303 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 2111038 microseconds
 ```
-<p align="center"><img src="img/43opt_40.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/43opt_40.png" alt="TSP videos" width="400"/></p>
+<p align="center">
+  <img src="img/43opt_40.gif" width="400" alt="43opt_40gif"/>
+  <img src="img/43opt_40.png" width="400" alt="43opt_40"/> 
+</p>
+
 
 - 50 places
 ```shell
@@ -470,8 +502,10 @@ The distance of the path is:9.86856 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 7833522 microseconds
 ```
-<p align="center"><img src="img/43opt_50.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/43opt_50.png" alt="TSP videos" width="400"/></p>
+<p align="center">
+  <img src="img/43opt_50.gif" width="400" alt="43opt_50gif"/>
+  <img src="img/43opt_50.png" width="400" alt="43opt_50"/> 
+</p>
 
 
 ### 5. Genetic
@@ -498,8 +532,11 @@ The distance of the path is:5.78925 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 2105 microseconds
 ```
-<p align="center"><img src="img/4ga_8.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/4ga_8.png" alt="TSP videos" width="400"/></p>
+<p align="center">
+  <img src="img/4ga_8.gif" width="400" alt="4ga_8gif"/>
+  <img src="img/4ga_8.png" width="400" alt="4ga_8"/> 
+</p>
+
 
 - 10 places
 ```shell
@@ -514,8 +551,10 @@ The distance of the path is:5.75275 miles
 You could find your animation at src/lib/output.avi.          
 Time taken by function: 2194 microseconds
 ```
-<p align="center"><img src="img/4ga_10.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/4ga_10.png" alt="TSP videos" width="400"/></p>
+<p align="center">
+  <img src="img/4ga_10.gif" width="400" alt="4ga_10gif"/>
+  <img src="img/4ga_10.png" width="400" alt="4ga_10"/> 
+</p>
 
 
 
@@ -535,7 +574,7 @@ As we can see, the runtime of brute force is much higher than others when the nu
 In this experiment, I run several cases using the above algorithms.
 - For Bruteforce and Backtracking these kinds of exhaustive search, the results are definitely right, but it takes too long for the algorithms to run. When the number of places is bigger than 15, it will take more than 5 minutes. The exhaustive search is not practical for too many nodes.
 - For 2-opt and 3-opt, I tried up to 50 inputs, and the results of the two algorithms are all optimal. They also don't need too much time to run. Therefore, when there are more than 15 inputs, the heuristic implementation is preferred.
-- For genetic algorithm, although the running time is short, it cannot get the optimal result when the number of input is bigger than 12.
+- For genetic algorithm, although the running time is short, it cannot get the optimal result when the number of input is bigger than 10.
 
 ## Step5: Cycle detection:
 For this section, we use a square-shaped subgraph of the original graph by using four corrdinates. And it follows the order of left, right, upper and lower bounds. We are tring to determine if there is a cycle path in that subgraph.
@@ -714,5 +753,5 @@ Second, we learned a lot of data structure such as vector, map, lists, graph, tr
 
 Third, we also learned a lot of algorithms such as sorting, backtracking and dynamic programming. We know how to use it and implement it into a practical problems. But we think we still need to do more questions to familar with it.
 
-last but not the least, we both think professor really did a great job that let us understand all the things deeply. Appreciated and thanks.
+Last but not the least, we both think professor really did a great job that let us understand all the things deeply. Appreciated and thanks.
 
