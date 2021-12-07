@@ -82,7 +82,7 @@ TEST(TrojanMapTest, FindPosition) {
   EXPECT_EQ(position, gt4);
 }
 
-// Test Step3: CalculateShortestPath_Dijkstra function 1
+// Test Step3: CalculateShortestPath Dijkstra and Bellman_Ford function 1
 TEST(TrojanMapTest, CalculateShortestPath_Dijkstra) {
   TrojanMap m;
   m.CreateGraphFromCSVFile();
@@ -111,7 +111,7 @@ TEST(TrojanMapTest, CalculateShortestPath_Dijkstra) {
   EXPECT_EQ(path, gt);
 }
 
-// Test Step3: CalculateShortestPath_Bellman_Ford function 2
+// Test Step3: CalculateShortestPath Dijkstra and Bellman_Ford function 2
 TEST(TrojanMapTest, CalculateShortestPath_Dijkstra2) {
   TrojanMap m;
   m.CreateGraphFromCSVFile();
@@ -137,6 +137,34 @@ TEST(TrojanMapTest, CalculateShortestPath_Dijkstra2) {
   
   // Reverse the input from Lyons Center to 7Eleven
   path = m.CalculateShortestPath_Dijkstra("Lyons Center","7Eleven");
+  std::reverse(gt.begin(),gt.end()); // Reverse the path
+
+  // Print the path lengths
+  std::cout << "My path length: "  << m.CalculatePathLength(path) << "miles" << std::endl;
+  std::cout << "GT path length: " << m.CalculatePathLength(gt) << "miles" << std::endl;
+  EXPECT_EQ(path, gt);
+}
+
+// Test Step3: CalculateShortestPath Dijkstra and Bellman_Ford function 3
+TEST(TrojanMapTest, CalculateShortestPath_Dijkstra3) {
+  TrojanMap m;
+  m.CreateGraphFromCSVFile();
+  // Test from Los Angeles to Parking Center
+  auto path = m.CalculateShortestPath_Bellman_Ford("Los Angeles", "Parking Center");
+  // Expected path
+  std::vector<std::string> gt{
+      "368173251", "7360424709", "269636455", "269636427", "269636426", "269635137", "5768963619", 
+      "5768963620", "1613487058", "269635440", "269635411", "1614922628", "1614922626", "4399914044", 
+      "4399914043", "1614922624", "4399914042", "1614922622", "4399914035", "1614922617", "1837202710", 
+      "1837202714", "4399914037", "4399914040", "1837202706", "123292047", "6939732877", "123292045", "4012759747",
+      "4012759746", "732642214" }; 
+  // Print the path lengths
+  std::cout << "My path length: "  << m.CalculatePathLength(path) << "miles" << std::endl;
+  std::cout << "GT path length: " << m.CalculatePathLength(gt) << "miles" << std::endl;
+  EXPECT_EQ(path, gt);
+  
+  // Reverse the input from Parking Center to Los Angeles
+  path = m.CalculateShortestPath_Dijkstra("Parking Center","Los Angeles");
   std::reverse(gt.begin(),gt.end()); // Reverse the path
 
   // Print the path lengths
