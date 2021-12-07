@@ -223,10 +223,10 @@ We use ``swap`` instead of ``find``. Backtraing is implemented O(n!) times total
 
 Please input the number of the places:8
 **************************************************************
-The distance of the path is:4.4655 miles
+The distance of the path is:4.13595 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 64062 microseconds
+Time taken by function: 68035 microseconds
 ```
 <p align="center"><img src="img/4bruteforce_8.gif" alt="bruteforce 10points" width="400"/></p>
 <p align="center"><img src="img/4bruteforce_8.png"  width="400"/></p>
@@ -240,10 +240,10 @@ Time taken by function: 64062 microseconds
 
 Please input the number of the places:10
 **************************************************************
-The distance of the path is:4.39643 miles
+The distance of the path is:4.44844 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 5257472 microseconds
+Time taken by function: 5852684 microseconds
 ```
 <p align="center"><img src="img/4bruteforce_10.gif" alt="bruteforce 10points" width="400"/></p>
 <p align="center"><img src="img/4bruteforce_10.png"  width="400"/></p>
@@ -310,29 +310,13 @@ In this section, we implement 2-opt algorithm to solve the Traveling Trojan Prob
 
 Please input the number of the places:10
 **************************************************************
-The distance of the path is:5.48317 miles
+The distance of the path is:4.65398 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 1715 microseconds
+Time taken by function: 1713 microseconds
 ```
 <p align="center"><img src="img/42opt_10.gif" alt="TSP videos" width="400"/></p>
 <p align="center"><img src="img/42opt_10.png" width="400"/></p>
-
-- 15 places
-```shell
-**************************************************************
-* 4. Traveling salesman problem                              
-**************************************************************
-
-Please input the number of the places:15
-**************************************************************
-The distance of the path is:5.1278 miles
-**************************************************************
-You could find your animation at src/lib/output.avi.          
-Time taken by function: 11772 microseconds
-```
-<p align="center"><img src="img/42opt_15.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/42opt_15.png" width="400"/></p>
 
 - 20 places
 ```shell
@@ -342,10 +326,10 @@ Time taken by function: 11772 microseconds
 
 Please input the number of the places:20
 **************************************************************
-The distance of the path is:7.02435 miles
+The distance of the path is:6.67446 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 24199 microseconds
+Time taken by function: 16287 microseconds
 ```
 <p align="center"><img src="img/42opt_20.gif" alt="TSP videos" width="400"/></p>
 <p align="center"><img src="img/42opt_20.png" width="400"/></p>
@@ -358,10 +342,10 @@ Time taken by function: 24199 microseconds
 
 Please input the number of the places:30
 **************************************************************
-The distance of the path is:5.99172 miles
+The distance of the path is:5.85451 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 90722 microseconds
+Time taken by function: 25583 microseconds
 ```
 <p align="center"><img src="img/42opt_30.gif" alt="TSP videos" width="400"/></p>
 <p align="center"><img src="img/42opt_30.png" width="400"/></p>
@@ -374,10 +358,10 @@ Time taken by function: 90722 microseconds
 
 Please input the number of the places:40
 **************************************************************
-The distance of the path is:8.92963 miles
+The distance of the path is:9.81059 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 198653 microseconds
+Time taken by function: 146846 microseconds
 ```
 <p align="center"><img src="img/42opt_40.gif" alt="TSP videos" width="400"/></p>
 <p align="center"><img src="img/42opt_40.png" width="400"/></p>
@@ -390,10 +374,10 @@ Time taken by function: 198653 microseconds
 
 Please input the number of the places:50
 **************************************************************
-The distance of the path is:9.42343 miles
+The distance of the path is:9.24729 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 351336 microseconds
+Time taken by function: 370281 microseconds
 ```
 <p align="center"><img src="img/42opt_50.gif" alt="TSP videos" width="400"/></p>
 <p align="center"><img src="img/42opt_50.png" width="400"/></p>
@@ -509,10 +493,10 @@ We will update all the populations for several generations, which costs O(g*p). 
 
 Please input the number of the places:8
 **************************************************************
-The distance of the path is:4.48169 miles
+The distance of the path is:5.78925 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 1707 microseconds
+Time taken by function: 2105 microseconds
 ```
 <p align="center"><img src="img/4ga_8.gif" alt="TSP videos" width="400"/></p>
 <p align="center"><img src="img/4ga_8.png" alt="TSP videos" width="400"/></p>
@@ -525,42 +509,26 @@ Time taken by function: 1707 microseconds
 
 Please input the number of the places:10
 **************************************************************
-The distance of the path is:4.48169 miles
+The distance of the path is:5.75275 miles
 **************************************************************
 You could find your animation at src/lib/output.avi.          
-Time taken by function: 1707 microseconds
+Time taken by function: 2194 microseconds
 ```
 <p align="center"><img src="img/4ga_10.gif" alt="TSP videos" width="400"/></p>
 <p align="center"><img src="img/4ga_10.png" alt="TSP videos" width="400"/></p>
-
-- 12 places
-```shell
-**************************************************************
-* 4. Traveling salesman problem                              
-**************************************************************
-
-Please input the number of the places:12
-**************************************************************
-The distance of the path is:4.48169 miles
-**************************************************************
-You could find your animation at src/lib/output.avi.          
-Time taken by function: 1707 microseconds
-```
-<p align="center"><img src="img/4ga_12.gif" alt="TSP videos" width="400"/></p>
-<p align="center"><img src="img/4ga_12.png" alt="TSP videos" width="400"/></p>
 
 
 
 ### 6. Runtime compard between Brute force, backtracking, 2-opt, 3-opt and Genetic
 We listed several examples to compare the runtime between Brute force, backtracking, 2-opt and Genetic.
 
-<p align="center"><img src="img/Student_table2.png"  width="400"/></p>
+<p align="center"><img src="img/Student_table2.png"  width="500"/></p>
 
-<p align="center"><img src="img/Student_compare.png"  width="400"/></p>
+<p align="center"><img src="img/Student_compare.png"  width="500"/></p>
 
-<p align="center"><img src="img/Student_table3.png"  width="400"/></p>
+<p align="center"><img src="img/Student_table3.png"  width="500"/></p>
 
-<p align="center"><img src="img/Student_2and3.png"  width="400"/></p>
+<p align="center"><img src="img/Student_2and3.png"  width="500"/></p>
 
 As we can see, the runtime of brute force is much higher than others when the number of nodes get larger.
 
