@@ -410,7 +410,8 @@ In this section, we implement 3-opt algorithm, which is a little more complicate
 - Using these three nodes as three breaking points to the route. The route is seperated to three parts. We can then find eight different routes by reversing and swaping the three parts.
 - If the length of the new route is shorter, we continue to find the new three nodes(index: i, j, j). Or we will check all the eight routes. When there is no update, we break the loops.
 
-**Time complexity:** each while loop is $O(n^3)$. We break the loop while there is no updates to the shortest path length
+**Time complexity:** each while loop is $O(n^3)$. We break the loop while there is no updates to the shortest path length.
+
 **Examples and Time taken by function:**
 - 10 places
 ```shell
@@ -581,11 +582,11 @@ For this section, we use a square-shaped subgraph of the original graph by using
 
 First, we can get the left, right, upper and lower bounds from the ```std::vector<double> square```. Second, we go through the data's latitude and longtitude to see any points are in the square and we push back to vector which named points. We are using DFS for the cycle detection, we need to consider the parent in the cycle detection incase there are two nodes that is detected as a cycle. Then, we use a map with booling named visited, we set every point in points are false. And go through all the points using recursive DFS. Eventually, we plot the path and square out.
 
-Time complexity: $O(m+n)$. m represents the number of edges in the map and n represents the number of nodes.
+**time complexity:** $O(m+n)$. m represents the number of edges in the map and n represents the number of nodes.
 
 Every nodes will be vistied only once, and for each node we only check its neighbor once. So, the maximum of conputations is only number of nodes and number of edges.
 
-Time spent: 
+ **Examples and Time taken by function:**
 
 Example 1:
 ```shell
@@ -597,7 +598,6 @@ Output: true
 **************************************************************
 * 5. Cycle Detection                                          
 **************************************************************
-
 Please input the left bound longitude(between -118.299 and -118.264):-118.278
 Please input the right bound longitude(between -118.299 and -118.264):-118.267
 Please input the upper bound latitude(between 34.011 and 34.032):34.028
@@ -620,7 +620,6 @@ Output: true
 **************************************************************
 * 5. Cycle Detection                                          
 **************************************************************
-
 Please input the left bound longitude(between -118.299 and -118.264):-118.294
 Please input the right bound longitude(between -118.299 and -118.264):-118.265
 Please input the upper bound latitude(between 34.011 and 34.032):34.031
@@ -643,6 +642,7 @@ In this section, we are going to find the feasible route according to some depen
 Obtaining the edge map costs O(m). The time complexity of DFS is O(n).
 
 **Examples and Time taken by function:**
+
 Example 1:
 ```shell
 Input: 
@@ -705,11 +705,9 @@ For this section, we are going to find the k closest location with the name on t
 
 We are using heap for this section. First, we create a priority queue and set the return vector to be the k sizes. Then, we get the location name and the location's latitude and longitude. After that, we calculate the distance and put that in the queue. If the size of queue is equal to k size, then we compare the distance we calculated with the distance in the queue. If the distance we calculated is smaller than the distance in the queue. We replace it with the smallest one.
 
-Time complexity: $O(n*logk)$ n is the number of nodes in the map, k is the input parameter.
+**time complexity:** $O(n*logk)$ n is the number of nodes in the map, k is the input parameter.
 
-
-
-Time spent: 
+**Examples and Time taken by function:**
 
 ```shell
 **************************************************************
