@@ -1125,6 +1125,7 @@ int TrojanMap::getindex(std::vector<std::string> &v, std::string s){
       return i;
     }
   }
+  return 0;
 }
 
 //aux function of 3-opt
@@ -1498,8 +1499,8 @@ std::vector<std::string> TrojanMap::FindKClosestPoints(std::string name, int k) 
   std::vector<std::string> res;
   std::priority_queue<std::pair<double, std::string>> q; // first element is maximum 
   std::string start_id = GetID(name);
-  double start_lat = data[start_id].lat;
-  double start_lon = data[start_id].lon;
+  //double start_lat = data[start_id].lat;
+  //double start_lon = data[start_id].lon;
   int count =0;
 
   // limit the size of priority_queue to k
