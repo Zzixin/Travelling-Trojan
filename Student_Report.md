@@ -643,11 +643,6 @@ location_names = {"University Park", "Troy View Swimming Pool","CVS"}
 dependencies = {{"University Park","Troy View Swimming Pool"}, {"Troy View Swimming Pool","CVS"}, {"University Park","CVS"}}
 ```
 
-
-
-
-
-
 Example 2:
 ```shell
 Input: 
@@ -659,7 +654,6 @@ dependencies = {{"Saint Marks Lutheran Church","Trinity Elementary School"}, {"S
 **************************************************************
 * 6. Topological Sort                                         
 **************************************************************
-
 Please input the locations filename:/Users/yzj/EE538/final-project-ZijianYe/input/topologicalsort_locations.csv
 Please input the dependencies filename:/Users/yzj/EE538/final-project-ZijianYe/input/topologicalsort_dependencies.csv
 *************************Results******************************
