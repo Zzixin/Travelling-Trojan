@@ -558,6 +558,8 @@ We listed several examples to compare the runtime between Brute force, backtrack
 
 <p align="center"><img src="img/Student_compare.png"  width="400"/></p>
 
+<p align="center"><img src="img/Student_table3.png"  width="400"/></p>
+
 <p align="center"><img src="img/Student_2and3.png"  width="400"/></p>
 
 As we can see, the runtime of brute force is much higher than others when the number of nodes get larger.
