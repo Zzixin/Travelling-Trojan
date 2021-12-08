@@ -1,6 +1,6 @@
 # EE538 Final Project Report - Fall 2021 - TrojanMap
 
-## Group members: Zixin Zhang, Zijian Ye
+## Group members: Zixin Zhang (zixinz@usc.edu), Zijian Ye (zijianye@usc.edu)
 
 ## Presentation video link: https://youtu.be/JyVr2JuwS1s
 
@@ -258,7 +258,7 @@ Time taken by function: 5852684 microseconds
 The backtracking algorithm is similar to the previous brute force algorithm. 
 - We use a if statement to implement early backtracking. When the current distance is larger than the current minimum distance, we just skip the case and continue to the next permutation. Therefore, we can save the time.
 
-**time complexity:** $O(n*n!)$
+**Time complexity:** $O(n*n!)$
 
 **Examples and Time taken by function:**
 - 10 places
@@ -304,7 +304,7 @@ In this section, we implement 2-opt algorithm to solve the Traveling Trojan Prob
 - Two for-loops are used to compare every possible possible route. If the new route is shorter, we continue to find the next route. While if it's longer, we will use the previous route to continue the loop.
 - Break the loops while there is no updates to the shortest route.
 
-**time complexity:** each while loop is $O(n^2)$. We break the loop while there is no updates to the shortest route length. 
+**Time complexity:** each while loop is $O(n^2)$. We break the loop while there is no updates to the shortest route length. 
 
 **Examples and Time taken by function:**
 - 10 places
@@ -582,7 +582,7 @@ For this section, we use a square-shaped subgraph of the original graph by using
 
 First, we can get the left, right, upper and lower bounds from the ```std::vector<double> square```. Second, we go through the data's latitude and longtitude to see any points are in the square and we push back to vector which named points. We are using DFS for the cycle detection, we need to consider the parent in the cycle detection incase there are two nodes that is detected as a cycle. Then, we use a map with booling named visited, we set every point in points are false. And go through all the points using recursive DFS. Eventually, we plot the path and square out.
 
-**time complexity:** $O(m+n)$. m represents the number of edges in the map and n represents the number of nodes.
+**Time complexity:** $O(m+n)$. m represents the number of edges in the map and n represents the number of nodes.
 
 Every nodes will be vistied only once, and for each node we only check its neighbor once. So, the maximum of conputations is only number of nodes and number of edges.
 
@@ -698,7 +698,7 @@ Time taken by function: 183 microseconds
 
 <p align="center"><img src="img/Student_topo2.png"  width="400"/></p>
 
-As you can see, with the grows of input size, the runtime is not increase too much.
+As we can see, with the grows of input size, the runtime is not increase too much.
 
 ## Step7: Find K closest points:
 For this section, we are going to find the k closest location with the name on the map and return a vector of string ids.
