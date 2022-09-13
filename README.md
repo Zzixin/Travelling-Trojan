@@ -1,7 +1,5 @@
 # EE538 Final Project Report - Fall 2021 - TrojanMap
 
-## Group members: Zixin Zhang (zixinz@usc.edu), Zijian Ye (zijianye@usc.edu)
-
 ## Presentation video link: https://youtu.be/JyVr2JuwS1s
 
 ## Step1: Autocomplete the location name：
