@@ -1,8 +1,16 @@
 # EE538 Final Project Report - Fall 2021 - TrojanMap
 
-## Presentation video link: https://youtu.be/JyVr2JuwS1s
+[Step1: Autocomplete the location name](#jump1)<br>
+[Step2: Find the place's coordinates in the map](#jump2)<br>
+[Step3: CalculateShortestPath between two places](#jump3) [1. Dijkstra](#jump4) [2. Bellman-Ford](#jump5) <br>
+[Step4: The traveling Salesman Problem:](#jump6) [1. Brute Force](#jump7) [2. Backtracking](#jump8) [3. 2-opt](#jump9) [4. 3-opt](#jump10) [5. Genetic Algorithm](#jump11)<br>
+[Step5: Cycle detection](#jump12)<br>
+[Step6: Topological Sort](#jump13)<br>
+[Step7: Find K closest points](#jump14)<br>
 
-## Step1: Autocomplete the location name：
+
+
+## <span id="jump1">Step1: Autocomplete the location name: </span>
 For this function, we are going to conside the names of nodes as the locations. In the input, we typed in the name prefix of the location, and the output will give us the partial name of the prefix we typed in. Besides, we need to treat the uppercase and lowercase as the same character.
 
 First, we transform the input name and all the location name of data to lowercase. And we set a flag to 1, if the input name size bigger than the location name of data, we change the flag to 0, if not, we go through the location name of data with size of input name. Then, we push back the result to the vector.
@@ -43,7 +51,7 @@ crosswalk3
 Time taken by function: 5822 microseconds
 ```
 
-## Step2: Find the place's coordinates in the map:
+## <span id="jump2">Step2: Find the place's coordinates in the map:</span>
 For this function, the input is the location name. And we want the latitude and longitude of the location name in the output. If the given location does not exist, then return (-1,-1).
 
 First, we find the node of the input location name. Second, we go through the node of data, if the node name is the input location name, then we return the latitude and longitude. If not, we return (-1,-1).
@@ -100,8 +108,8 @@ Time taken by function: 4242 microseconds
 <p align="center"><img src="img/Student_step23.png"  width="400"/></p>
 
 
-## Step3: CalculateShortestPath between two places:
-### 1. Dijkstra
+## <span id="jump3"> Step3: CalculateShortestPath between two places: </span>
+### <span id="jump4"> 1. Dijkstra </span>
 We use ```priority_queue``` to implement Dijkstra Algorithm. The input is the names of start locaton and end location. We expect the shortest path between these two locations.
 
 - First, we initialize the unordered_map ```distance```, which records the shortest distance value between the location and the source node. The values of ```distance``` are set to INT_MAX and we assign distance value as 0 for the source node, so that it can be picked first.
@@ -146,7 +154,7 @@ Time taken by function: 15594 microseconds
 <p align="center"><img src="img/Student_dijkstra2.png"  width="400"/></p>
 
 
-### 2. Bellman-Ford
+### <span id="jump5"> 2. Bellman-Ford </span>
 In this section, we implement Bellman-Ford algorithm. 
 - First, we initialize a map ```distance``` of size n(n represents the number of nodes) with all distance values from the source to other nodes as infinite(INT_MAX) except the ```dist[start]```, which is 0.
 - Then we do edge relaxation for n-1 times. Because the source node to any other node in the map can have at most n-1 edges. 
@@ -201,8 +209,8 @@ Dijkstra choose the nodes with the minimum distance to the source that hasn't be
 As we can see from the picture, the runtime of Dijkstra is much less than the one of Bellman_Ford.
 
 
-## Step4: The traveling Trojan Problem:
-### 1. Brute force
+## <span id="jump6">Step4: The traveling Trojan Problem: </span>
+### <span id="jump7">1. Brute force</span>
 In this section, we use Backtracking algorithm to solve Traveling Trojan Problem.
 
 - While implementing backtracking, we use swap function to swap the positions of two nodes in the vector to get different permutations. We also set a pointer to record the index of swapping node. 
@@ -252,7 +260,7 @@ Time taken by function: 5852684 microseconds
 
 
 
-### 2. Backtracking
+### <span id="jump8">2. Backtracking</span>
 The backtracking algorithm is similar to the previous brute force algorithm. 
 - We use a if statement to implement early backtracking. When the current distance is larger than the current minimum distance, we just skip the case and continue to the next permutation. Therefore, we can save the time.
 
@@ -296,7 +304,7 @@ Time taken by function: 4221427 microseconds
 </p>
 
 
-### 3. 2-opt
+### 3. <span id="jump9">2-opt</span>
 In this section, we implement 2-opt algorithm to solve the Traveling Trojan Problem.
 - We use swapping mechanism here, reversing part of the nodes to reorder them and get a new permutation. 
 - Two for-loops are used to compare every possible possible route. If the new route is shorter, we continue to find the next route. While if it's longer, we will use the previous route to continue the loop.
@@ -402,7 +410,7 @@ Time taken by function: 370281 microseconds
 
 
 
-### 4. 3-opt
+### 4. <span id="jump10">3-opt</span>
 In this section, we implement 3-opt algorithm, which is a little more complicated than 2-opt.
 - We use three for loops to get three different nodes, whose index are i, j, k. i, j, k should satisfy i<j<k or j<k<i or k<i<j.
 - Using these three nodes as three breaking points to the route. The route is seperated to three parts. We can then find eight different routes by reversing and swaping the three parts.
@@ -507,7 +515,7 @@ Time taken by function: 7833522 microseconds
 </p>
 
 
-### 5. Genetic
+### 5. <span id="jump11">Genetic</span>
 In this section, we implement genetic algorithm. We take location_ids as genes and routes as chromosomes/populations. 
 - We set the population size as 7, so there will be 7 different routes in the populations.
 - Then we iterate several generations. For every generation, all the populations will be updated.
@@ -575,7 +583,7 @@ In this experiment, I run several cases using the above algorithms.
 - For 2-opt and 3-opt, I tried up to 50 inputs, and the results of the two algorithms are all optimal. They also don't need too much time to run. Therefore, when there are more than 15 inputs, the heuristic implementation is preferred.
 - For genetic algorithm, although the running time is short, it cannot get the optimal result when the number of input is bigger than 10.
 
-## Step5: Cycle detection:
+## <span id="jump12">Step5: Cycle detection:</span>
 For this section, we use a square-shaped subgraph of the original graph by using four corrdinates. And it follows the order of left, right, upper and lower bounds. We are tring to determine if there is a cycle path in that subgraph.
 
 First, we can get the left, right, upper and lower bounds from the ```std::vector<double> square```. Second, we go through the data's latitude and longtitude to see any points are in the square and we push back to vector which named points. We are using DFS for the cycle detection, we need to consider the parent in the cycle detection incase there are two nodes that is detected as a cycle. Then, we use a map with booling named visited, we set every point in points are false. And go through all the points using recursive DFS. Eventually, we plot the path and square out.
@@ -630,7 +638,7 @@ Time taken by function: 264530 microseconds
 
 <p align="center"><img src="img/Student_cycle2.png"  width="400"/></p>
 
-## Step6: Topological Sort:
+## <span id="jump13">Step6: Topological Sort:</span>
 In this section, we are going to find the feasible route according to some dependencies. We mainly use DFS to realize Topological Sort.
 
 - First, we initialize the edge map which contains the node and its neighbors and the mark map which is used to record whether the node has been marked.
@@ -698,7 +706,7 @@ Time taken by function: 183 microseconds
 
 As we can see, with the grows of input size, the runtime is not increase too much.
 
-## Step7: Find K closest points:
+## <span id="jump14">Step7: Find K closest points:</span>
 For this section, we are going to find the k closest location with the name on the map and return a vector of string ids.
 
 We are using heap for this section. First, we create a priority queue and set the return vector to be the k sizes. Then, we get the location name and the location's latitude and longitude. After that, we calculate the distance and put that in the queue. If the size of queue is equal to k size, then we compare the distance we calculated with the distance in the queue. If the distance we calculated is smaller than the distance in the queue. We replace it with the smallest one.
