@@ -1,4 +1,4 @@
-# EE538 Final Project Report - Fall 2021 - TrojanMap
+TrojanMap
 
 [Step1: Autocomplete the location name](#jump1)<br>
 [Step2: Find the place's coordinates in the map](#jump2)<br>
