@@ -2,8 +2,8 @@
 
 [Step1: Autocomplete the location name](#jump1)<br>
 [Step2: Find the place's coordinates in the map](#jump2)<br>
-[Step3: CalculateShortestPath between two places](#jump3) [1. Dijkstra](#jump4) [2. Bellman-Ford](#jump5) <br>
-[Step4: The traveling Salesman Problem:](#jump6) [1. Brute Force](#jump7) [2. Backtracking](#jump8) [3. 2-opt](#jump9) [4. 3-opt](#jump10) [5. Genetic Algorithm](#jump11)<br>
+[Step3: CalculateShortestPath between two places](#jump3) [1. Dijkstra](#jump4) [2. Bellman-Ford](#jump5) [3. Comparation](#jump_compare1)<br>
+[Step4: The traveling Salesman Problem:](#jump6) [1. Brute Force](#jump7) [2. Backtracking](#jump8) [3. 2-opt](#jump9) [4. 3-opt](#jump10) [5. Genetic Algorithm](#jump11) [6. Comparation](#jump_compare2)<br>
 [Step5: Cycle detection](#jump12)<br>
 [Step6: Topological Sort](#jump13)<br>
 [Step7: Find K closest points](#jump14)<br>
@@ -197,7 +197,7 @@ Time taken by function: 271712 microseconds
 As we can the results from Dijkstra and Bellman-ford are identical. However, Bellman-ford costs much more time than Dijkstra.
 
 
-### 3. Runtime compard between Dijkstra and Bellman-Ford
+### <span id="jump_compare1">3. Runtime compard between Dijkstra and Bellman-Ford</span>
 We listed 10 examples to compare the runtime between Dijkstra and Bellman_Ford. There are totally 2237 nodes in the map. We implement the two algorithms over these 2237 nodes.
 
 Dijkstra choose the nodes with the minimum distance to the source that hasn't been visited, and do the edge relaxation process on all of its outgoing edges. While Bellman-Ford just do edge relaxation for all edges in the map and do this n-1 times. n is the number of nodes. Bellman-Ford performs check on all the nodes, while Dijkstra just check the one with the shortest distance. Therefore, when there is no negative edges, Dijkstra performs better than Bellman-Ford.
@@ -565,7 +565,7 @@ Time taken by function: 2194 microseconds
 
 
 
-### 6. Runtime compard between Brute force, backtracking, 2-opt, 3-opt and Genetic
+### <span id="jump_compare2">6. Runtime compard between Brute force, backtracking, 2-opt, 3-opt and Genetic</span>
 We listed several examples to compare the runtime between Brute force, backtracking, 2-opt and Genetic.
 
 <p align="center"><img src="img/Student_table2.png"  width="600"/></p>
